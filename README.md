@@ -2,6 +2,9 @@
 
 ## Application for Analysis of the Economic Growth Indexes for European Countries
 
+*Authors: Agata Makarewicz, Jacek Wiśniewski*
+*Faculty of Mathematics & Information Science, Warsaw University of Technology*
+
 ### Aim of the work:
 
 The aim of the diploma thesis is to apply various clustering algorithms to the time series of economic growth of European countries. The analyzed data will be pre-processed using methods such as segmentation, normalization or anomaly removal. The results of the work will be presented in the form of an application with a graphical user interface written in Django, which will allow the user to compare the indicators for different countries.
