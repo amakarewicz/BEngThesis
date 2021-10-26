@@ -3,6 +3,7 @@
 ## Application for Analysis of the Economic Growth Indexes for European Countries
 
 *Authors: Agata Makarewicz, Jacek Wiśniewski*
+
 *Faculty of Mathematics & Information Science, Warsaw University of Technology*
 
 ### Aim of the work:
