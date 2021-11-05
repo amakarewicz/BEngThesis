@@ -1,3 +1,9 @@
+Korelacja – Pearson (domyślna w corr() ) – wzór, opis
+Imputacja – opisy metod
+Modeling – // next document?
+•	KMeans : https://scikit-learn.org/stable/modules/clustering.html#k-means
+•	Agglomerative Clustering : https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering 
+•	Fuzzy C-Means: https://pythonhosted.org/scikit-fuzzy/auto_examples/plot_cmeans.html
 
 1. Collect data
 wejscie na strony, pobranie danych, wspomniec o rozwazanych zrodłych,
