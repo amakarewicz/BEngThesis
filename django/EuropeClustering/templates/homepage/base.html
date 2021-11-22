@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <style>
+        html, body {
+            font-family: Calibri, serif;
+            background-color: antiquewhite
+        }
+        #parameters {color: white; border: 2px solid blue;
+            background-color: cornflowerblue; border-radius: 10px;
+            width: 20%; padding: 20px;
+        }
+        #parameters h3 {color: white; text-align: center}
+        #descriptions {display: flex}
+        .column {flex: 50%;
+            padding: 10px;
+            padding-top: 0px;
+            text-align: justify;
+        }
+        button {padding: 5px 10px 5px 10px; margin-left: 5px;}
+        .header {padding-left: 10px; padding-right: 10px;}
+        .header p {font-style: italic;}
+        #header h2 {
+            color: white;
+            border: 2px solid blue;
+            background-color: cornflowerblue;
+            text-align: center;
+            border-radius: 10px;
+        }
+        #header button {
+            background-color: #ffe866;
+            color: white;
+            border-radius: 10px;
+            border: 2px solid goldenrod;
+            width: 15%;
+            vertical-align: middle;
+        }
+        h3 {color: cornflowerblue;}
+        table {margin-left:auto; margin-right:auto; border-collapse: collapse;}
+        th, tr, td {
+            border: 1px solid black;
+            text-align: left; padding: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <h2>
+        <button id="home"><a href="/homepage">Home</a></button>
+        European Countries Clustering
+        <button id="read"><a href="/readabout">Read about the project</a></button>
+    </h2>
+</div>
+
+{#<div id="navigation">#}
+{##}
+{#</div>#}
+
+<div id="content">
+    {% block content %}Ta strona jest jeszcze pusta{% endblock %}
+</div>
+
+<div id="footer">
+{#    <hr/>#}
+</div>
+
+</body>
+</html>

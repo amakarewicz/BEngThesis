@@ -1,0 +1,31 @@
+{% extends "homepage/base.html" %}
+
+{% block content %}
+    <div id="parameters">
+        <h3>Customize report</h3>
+        <label>Choose model: </label><br/>
+        <label for="kmeans">
+            <input type="radio" name="model" id="kmeans"> KMeans
+        </label><br/>
+        <label for="agg">
+            <input type="radio" name="model" id="agg"> Hierarchical
+        </label><br/>
+        <label for="dbscan">
+            <input type="radio" name="model" id="dbscan"> DBSCAN
+        </label><br/><br/>
+        <label for="vars">Choose indicators: </label><br/>
+        <select id="vars" multiple>
+            <optgroup label="social">
+                <option>HDI</option>
+                <option>Migration</option>          
+            </optgroup>
+            <optgroup label="economy">
+                <option>GDP</option>
+                <option>Import</option>
+                <option>Export</option>
+                <option>Debt</option>
+            </optgroup>
+        </select><br/><br/>
+    <button>Perform clustering</button>
+    </div>
+{% endblock %}
