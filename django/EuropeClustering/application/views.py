@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+from application.models import Variable
 
 
 def homepage(request):
@@ -8,4 +9,9 @@ def homepage(request):
 
 
 def readabout(request):
-    return render(request, 'application/readabout.html')
+    variables = Variable.objects.all()
+
+    context = {'variables': variables}
+
+    return render(request, 'application/readabout.html', context)
+    # return render(request, 'application/readabout.html')

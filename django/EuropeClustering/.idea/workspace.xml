@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6d74f9c-7815-4905-94cd-2fb2dd4082b5" name="Default Changelist" comment="">
+    <list default="true" id="a6d74f9c-7815-4905-94cd-2fb2dd4082b5" name="Default Changelist" comment="django testing">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/application/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/application/readabout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/readabout.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +104,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="233" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1637934463922">
       <screen x="0" y="0" width="1280" height="680" />
@@ -91,22 +116,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1637934259809" />
-    <state width="618" height="163" key="GridCell.Tab.0.bottom" timestamp="1637933953514">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1637948899246">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="618" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1637933953514" />
-    <state width="618" height="163" key="GridCell.Tab.0.center" timestamp="1637933953514">
+    <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1637948899246" />
+    <state width="1237" height="163" key="GridCell.Tab.0.center" timestamp="1637948899246">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="618" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1637933953514" />
-    <state width="618" height="163" key="GridCell.Tab.0.left" timestamp="1637933953514">
+    <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1637948899246" />
+    <state width="1237" height="163" key="GridCell.Tab.0.left" timestamp="1637948899246">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="618" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1637933953514" />
-    <state width="618" height="163" key="GridCell.Tab.0.right" timestamp="1637933953514">
+    <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1637948899246" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right" timestamp="1637948899246">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="618" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1637933953514" />
+    <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1637948899246" />
     <state x="475" y="228" width="330" height="243" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1637928736216">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
