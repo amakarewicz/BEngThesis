@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="2c60122a-d0d8-4d96-b0d8-bcccb4002007">
+    <data-source source="LOCAL" name="dbo" uuid="2c60122a-d0d8-4d96-b0d8-bcccb4002007">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\agama\Documents\BEngThesis\django\EuropeClustering\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\jwisn\OneDrive\Dokumenty\BEngThesis\django\EuropeClustering\db.sqlite3</jdbc-url>
       <libraries>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.31.1/sqlite-jdbc-3.31.1.jar</url>
