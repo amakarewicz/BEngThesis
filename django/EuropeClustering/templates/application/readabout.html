@@ -36,13 +36,17 @@
                     <h3>Algorithms</h3>
                     <p>There are three different clustering algorithms implemented. See the table below for more information about each model and its parameters.</p>
                     <table>
+                        <thead>
+                            <tr>
+                                <th>Model</th><th>Description</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                        <tr>
-                            <th>Model</th><th>Description</th>
-                        </tr>
-                        <tr>
-                            <td>Kmeans</td><td></td>
-                        </tr>
+                        {% for algorithm in algorithms %}
+                            <tr>
+                                <td>{{ algorithm.name }}</td><td>{{ algorithm.description }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
