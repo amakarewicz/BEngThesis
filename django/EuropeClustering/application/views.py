@@ -1,6 +1,8 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
+from application.forms import CustomizeReport
 from application.models import Variable, Algorithm, Data
 
 import pandas as pd
@@ -49,6 +51,7 @@ pd.options.display.max_colwidth = None
 
 def homepage(request):
     data = pd.DataFrame(list(Data.objects.all().values()))
+    data = data.drop('id', axis=1)
     countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
 
     def kmeans_clustering(data: pd.DataFrame, n_clusters: int) -> TimeSeriesKMeans:
@@ -77,6 +80,71 @@ def homepage(request):
         model.fit(data_agg_arr)
         return model
 
+    def agglomerative_clustering(data: pd.DataFrame, n_clusters: int, linkage: str) -> AgglomerativeClustering:
+        """
+        Perform hierarchical clustering.
+
+        Args:
+            data (pd.DataFrame): preprocessed dataframe with economic indexes
+            n_clusters (int): number of clusters to be formed
+            linkage (str): type of linkage criterion; 'average', 'complete' or 'single'
+
+        Returns:
+            AgglomerativeClustering: fitted clustering model
+        """
+        # transform input data into adequate structure - 3D numpy array
+        data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
+        data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable'])['value'].aggregate('mean').unstack(
+            'year')
+        data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
+        n_countries = data_t.shape[0]  # number of points (countries)
+        time_range = data_t.shape[1]  # time range
+        n_vars = data.shape[1] - 3  # number of economic indexes
+        # filling the array
+        data_t_arr = np.empty(shape=(n_countries, time_range, n_vars))
+        for i in range(n_countries):
+            for j in range(time_range):
+                data_t_arr[i][j] = np.array(data_t.iloc[i, j])
+        # calculating distances between points (countries)
+        dtw_matrix = dtw_ndim.distance_matrix(data_t_arr, n_vars)
+        # creating and fitting the model
+        model = AgglomerativeClustering(
+            n_clusters=n_clusters, affinity='precomputed', linkage=linkage, compute_distances=True)
+        model.fit(dtw_matrix)
+        return model
+
+    def dbscan_clustering(data: pd.DataFrame, eps: float, min_samples: int) -> DBSCAN:
+        """
+        Perform DBSCAN clustering.
+
+        Args:
+            data (pd.DataFrame): preprocessed dataframe with economic indexes
+            eps (float): maximum distance between two points for them to be considered as neighbouring
+            min_samples (int): number of samples in a neighborhood for a point to be considered as a core point
+
+        Returns:
+            DBSCAN: fitted clustering model
+        """
+        # transform input data into adequate structure - 3D numpy array
+        data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
+        data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable'])['value'].aggregate('mean').unstack(
+            'year')
+        data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
+        n_countries = data_t.shape[0]  # number of points (countries)
+        time_range = data_t.shape[1]  # time range
+        n_vars = data.shape[1] - 3  # number of economic indexes
+        # filling the array
+        data_t_arr = np.empty(shape=(n_countries, time_range, n_vars))
+        for i in range(n_countries):
+            for j in range(time_range):
+                data_t_arr[i][j] = np.array(data_t.iloc[i, j])
+        # calculating distances between points (countries)
+        dtw_matrix = dtw_ndim.distance_matrix(data_t_arr, n_vars)
+        # creating and fitting the model
+        model = DBSCAN(eps=eps, min_samples=min_samples, metric='precomputed')
+        model.fit(dtw_matrix)
+        return model
+
     def plot_clustering(countries: pd.DataFrame, labels: np.array) -> None:
         """
         Plot cartogram presenting clustering results for given countries.
@@ -93,10 +161,28 @@ def homepage(request):
         fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
         return fig.to_html(full_html=False, default_height=500, default_width=700)
 
-    model = kmeans_clustering(data, 4)
-    figure = plot_clustering(countries, model.labels_)
+    if request.method == 'POST':
+        form = CustomizeReport(request.POST)
+        if form.is_valid():
+            if form.cleaned_data['algorithm'] == 'kmeans':
+                model = kmeans_clustering(data, 4)
+                figure = plot_clustering(countries, model.labels_)
+            elif form.cleaned_data['algorithm'] == 'hierarchical':
+                model = agglomerative_clustering(data, 4, 'complete')
+                figure = plot_clustering(countries, model.labels_)
+            else:
+                dbscan_ts = dbscan_clustering(data, 3.1, 6)
+                figure = plot_clustering(countries, dbscan_ts.labels_)
+            context = {'figure': figure,
+                       'form': form}
+            return render(request, 'application/homepage.html', context)
+        else:
+            form = CustomizeReport()
+            context = {'form': form}
 
-    context = {'figure': figure}
+    else:
+        form = CustomizeReport()
+        context = {'form': form}
 
     return render(request, 'application/homepage.html', context)
 
