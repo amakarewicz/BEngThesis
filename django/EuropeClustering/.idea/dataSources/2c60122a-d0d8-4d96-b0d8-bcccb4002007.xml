@@ -150,12 +150,12 @@
       <DataType>real|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="7" name="export">
+    <column id="45" parent="7" name="export_percent">
       <Position>21</Position>
       <DataType>real|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="7" name="import_value">
+    <column id="46" parent="7" name="import_percent">
       <Position>22</Position>
       <DataType>real|0s</DataType>
       <NotNull>1</NotNull>

@@ -164,6 +164,10 @@ def homepage(request):
     if request.method == 'POST':
         form = CustomizeReport(request.POST)
         if form.is_valid():
+            variables = form.cleaned_data['variables']
+            columns = ['country', 'countrycode', 'year'] + list(variables.values_list('name', flat=True))
+            data = data[columns]
+            # print(Variable.objects.all().values_list('name', flat=True))
             if form.cleaned_data['algorithm'] == 'kmeans':
                 model = kmeans_clustering(data, 4)
                 figure = plot_clustering(countries, model.labels_)
