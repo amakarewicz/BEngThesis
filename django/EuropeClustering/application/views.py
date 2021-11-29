@@ -106,7 +106,7 @@ def homepage(request):
             for j in range(time_range):
                 data_t_arr[i][j] = np.array(data_t.iloc[i, j])
         # calculating distances between points (countries)
-        dtw_matrix = dtw_ndim.distance_matrix(data_t_arr, n_vars)
+        dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
         # creating and fitting the model
         model = AgglomerativeClustering(
             n_clusters=n_clusters, affinity='precomputed', linkage=linkage, compute_distances=True)
@@ -139,7 +139,7 @@ def homepage(request):
             for j in range(time_range):
                 data_t_arr[i][j] = np.array(data_t.iloc[i, j])
         # calculating distances between points (countries)
-        dtw_matrix = dtw_ndim.distance_matrix(data_t_arr, n_vars)
+        dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
         # creating and fitting the model
         model = DBSCAN(eps=eps, min_samples=min_samples, metric='precomputed')
         model.fit(dtw_matrix)
