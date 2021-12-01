@@ -15,7 +15,18 @@
 {#        </label>#}
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+{#            {{ form.as_p }}#}
+            {{ form.algorithm.label_tag }}{{ form.algorithm }}
+            <br>
+            {{ form.variables.label_tag }}{{ form.variables }}
+            <br>
+            {{ form.n_clusters.label_tag }}{{ form.n_clusters }}
+            <br>
+            {{ form.linkage.label_tag }}{{ form.linkage }}
+            <br>
+            {{ form.eps.label_tag }}{{ form.eps }}
+            <br>
+            {{ form.min_samples.label_tag }}{{ form.min_samples }}
 
 {#            <br/><br/>#}
 {#            <label for="vars">Choose indicators: </label><br/>#}
