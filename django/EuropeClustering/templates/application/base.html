@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog</title>
+    <script>
+        function Hide() {
+            if(document.getElementById('id_algorithm').options[document.getElementById('id_algorithm').selectedIndex].value == "hierarchical") {
+                 document.getElementById('id_linkage').style.display = 'none';
+                 document.getElementById('id_eps').style.display = '';
+            } else {
+                 document.getElementById('id_linkage').style.display = '';
+                 document.getElementById('id_eps').style.display = 'none';
+            }
+            print('changed')
+        }
+
+        window.onload = function() {
+            document.getElementById('id_algorithm').onchange = Hide;
+        };
+    </script>
     <style>
         html, body {
             font-family: Calibri, serif;
@@ -56,11 +72,11 @@
         thead.th.indexcol, tbody.td.indexcol {width: 100px}
         thead.th.desccol, tbody.td.desccol {width: 400px}
 
-        .k_means_graph {
+        .map {
             float: right;
         }
 
-        .algorithms_radio_select{
+        .radio_select{
             list-style-type: none;
             padding: 0;
             margin: 0;

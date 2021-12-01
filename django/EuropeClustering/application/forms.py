@@ -7,9 +7,34 @@ algorithm_choices = [
     ('hierarchical', 'Hierarchical'),
     ('dbscan', 'DBSCAN')
 ]
-variables_choices = Variable.objects.all()
+
+linkage_choices = [
+    ('average', 'average'),
+    ('complete', 'complete'),
+    ('single', 'single')
+]
 
 
 class CustomizeReport(forms.Form):
-    algorithm = forms.ChoiceField(choices=algorithm_choices, widget=forms.RadioSelect(attrs={'class': "algorithms_radio_select"}), label='Choose model')
-    variables = forms.ModelMultipleChoiceField(queryset=variables_choices, widget=forms.SelectMultiple(), label='Choose variables') #CheckboxSelectMultiple
+    algorithm = forms.ChoiceField(choices=algorithm_choices,
+                                  widget=forms.RadioSelect(attrs={'class': "radio_select"}),
+                                  label='Choose model',
+                                  initial='kmeans')
+    variables = forms.ModelMultipleChoiceField(queryset=Variable.objects.all(),
+                                               widget=forms.SelectMultiple(),
+                                               label='Choose variables',
+                                               initial=Variable.objects.all()) #CheckboxSelectMultiple
+    n_clusters = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
+                                   label='Number of clusters',
+                                   initial=4)
+    linkage = forms.ChoiceField(choices=linkage_choices,
+                                widget=forms.RadioSelect(attrs={'class': "radio_select"}),
+                                label='Linkage',
+                                initial='complete')
+    eps = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
+                            label='Eps',
+                            initial=3.1)
+    min_samples = forms.ChoiceField(choices=[(x, x) for x in range(2, 20)],
+                                    label='Min samples',
+                                    initial=6)
+    # eps do zmiany
