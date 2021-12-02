@@ -1,0 +1,77 @@
+html, body {
+    font-family: Calibri, serif;
+    background-color: antiquewhite
+}
+#parameters {color: white; border: 2px solid blue;
+    background-color: cornflowerblue; border-radius: 10px;
+    width: 20%; padding: 20px; float: left;
+}
+#parameters h3 {color: white; text-align: center}
+#descriptions {display: flex}
+.column {flex: 50%;
+    padding: 10px;
+    padding-top: 0px;
+    text-align: justify;
+}
+button {padding: 5px 10px 5px 10px; margin-left: 5px;}
+.header {padding-left: 10px; padding-right: 10px;}
+.header p {font-style: italic;}
+#header h2 {
+    color: white;
+    border: 2px solid blue;
+    background-color: cornflowerblue;
+    text-align: center;
+    border-radius: 10px;
+}
+#header button {
+    background-color: #ffe866;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid goldenrod;
+    width: 15%;
+    vertical-align: middle;
+}
+h3 {color: cornflowerblue;}
+table {margin-left:auto; margin-right:auto; border-collapse: collapse}
+th, tr, td {
+    border: 1px solid black;
+    text-align: left; padding: 2px;
+}
+
+thead, tbody { display: block; }
+
+tbody {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/*Something wrong with thead*/
+thead.th.indexcol, tbody.td.indexcol {width: 100px}
+thead.th.desccol, tbody.td.desccol {width: 400px}
+
+#map {
+    float: right;
+}
+
+.radio_select{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#canvas {
+    width: 75%;
+    background-color: white;
+    height: 80%;
+    margin-left: 25%;
+}
+.graph {
+  width: 50%;
+  height: 50%;
+  /*box-sizing: border-box;*/
+  /*border: 1px solid black;*/
+  /*float: left;*/
+  /*text-align: center;*/
+  /*padding: 16px;*/
+}

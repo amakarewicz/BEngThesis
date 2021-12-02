@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import plotly.express as px
+import matplotlib.pyplot as plt
 from tslearn.preprocessing import TimeSeriesScalerMeanVariance
 from tslearn.clustering import TimeSeriesKMeans
 from dtaidistance import dtw_ndim
@@ -139,6 +140,37 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array) -> None:
     fig = px.choropleth(countries, locations='countrycode', color="cluster",
                         projection='conic conformal', color_discrete_sequence=px.colors.qualitative.Pastel)
     fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
+    return fig.to_html(full_html=False, default_height=500, default_width=700)
+
+
+def plot_dendrogram(model: AgglomerativeClustering, labels: np.array = None) -> None:
+    """
+    Create linkage matrix and plot dendrogram for given Hierarchical Clustering model.
+
+    Args:
+        model (AgglomerativeClustering): [description]
+    """
+    # create the counts of samples under each node
+    counts = np.zeros(model.children_.shape[0])
+    n_samples = len(model.labels_)
+    for i, merge in enumerate(model.children_):
+        current_count = 0
+        for child_idx in merge:
+            if child_idx < n_samples:
+                current_count += 1  # leaf node
+            else:
+                current_count += counts[child_idx - n_samples]
+        counts[i] = current_count
+    # create linkage matrix from calculated counts
+    linkage_matrix = np.column_stack([model.children_, model.distances_, counts]).astype(float)
+    # plot the  dendrogram
+    fig = plt.figure(figsize=(20, 15))
+    ax = fig.add_subplot(1, 1, 1)
+    dendrogram(linkage_matrix, labels=labels)
+    plt.xlabel('country codes', fontsize=20)
+    plt.ylabel('distance', fontsize=20)
+    ax.tick_params(axis='x', which='major', labelsize=20)
+    ax.tick_params(axis='y', which='major', labelsize=20)
     return fig.to_html(full_html=False, default_height=500, default_width=700)
 
 

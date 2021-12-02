@@ -3,60 +3,49 @@
 {% block content %}
     <div id="parameters">
         <h3>Customize report</h3>
-        {#        <label>Choose model: </label><br/>#}
-{#        <label for="kmeans">#}
-{#            <input type="radio" name="model" id="kmeans"> KMeans#}
-{#        </label><br/>#}
-{#        <label for="agg">#}
-{#            <input type="radio" name="model" id="agg"> Hierarchical#}
-{#        </label><br/>#}
-{#        <label for="dbscan">#}
-{#            <input type="radio" name="model" id="dbscan"> DBSCAN#}
-{#        </label>#}
         <form method="post">
             {% csrf_token %}
 {#            {{ form.as_p }}#}
+            {{ form.variables.label_tag }}{{ form.variables }} {# DODAC PODZIAL NA GRUPY ??? #}
+            <br/><br/>
             {{ form.algorithm.label_tag }}{{ form.algorithm }}
-            <br>
-            {{ form.variables.label_tag }}{{ form.variables }}
-            <br>
+            <p>Choose parameters:</p>
             {{ form.n_clusters.label_tag }}{{ form.n_clusters }}
-            <br>
+            <br/>
             {{ form.linkage.label_tag }}{{ form.linkage }}
-            <br>
             {{ form.eps.label_tag }}{{ form.eps }}
-            <br>
+            <br/>
             {{ form.min_samples.label_tag }}{{ form.min_samples }}
-
-{#            <br/><br/>#}
-{#            <label for="vars">Choose indicators: </label><br/>#}
-{#            <select id="vars" multiple>#}
-{#                <optgroup label="social">#}
-{#                    <option>HDI</option>#}
-{#                    <option>Migration</option>#}
-{#                </optgroup>#}
-{#                <optgroup label="economy">#}
-{#                    <option>GDP</option>#}
-{#                    <option>Import</option>#}
-{#                    <option>Export</option>#}
-{#                    <option>Debt</option>#}
-{#                </optgroup>#}
-{#            </select><br/><br/>#}
+            <br/>
             <button>Perform clustering</button>
         </form>
     </div>
-    <div class="map">
-    {% if figure %}
-        {{ figure|safe }}
-    {% else %}
-        <p>Oops! Something went wrong.</p>
-    {% endif %}
+    <div id="canvas">
+    bla bla bla
+{#        <div id="map" class="graph">#}
+{#        {% if figure %}#}
+{#            {{ figure|safe }}#}
+{#        {% else %}#}
+{#            <p>Oops! Something went wrong.</p>#}
+{#        {% endif %}#}
+{#        </div>#}
+        <div id="table" class="graph">
+        {% if table %}
+            {{ table|safe }}
+        {% else %}
+            <p>Oops! Something went wrong.</p>
+        {% endif %}
+        </div>
+        <div id="series" class="graph">
+            bla
+        </div>
+        <div id="other_graph" class="graph">
+        {% if other_graph %}
+            {{ other_graph|safe }}
+        {% else %}
+            <p>Oops! Something went wrong.</p>
+        {% endif %}
+        </div>
     </div>
-    <div class="table">
-    {% if table %}
-        {{ table|safe }}
-    {% else %}
-        <p>Oops! Something went wrong.</p>
-    {% endif %}
-    </div>
+
 {% endblock %}

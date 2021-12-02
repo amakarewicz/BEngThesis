@@ -23,15 +23,19 @@ def homepage(request):
             # print(Variable.objects.all().values_list('name', flat=True))
             if form.cleaned_data['algorithm'] == 'kmeans':
                 model = kmeans_clustering(data, int(form.cleaned_data['n_clusters']))
+                other_graph = '0'
             elif form.cleaned_data['algorithm'] == 'hierarchical':
                 model = agglomerative_clustering(data, int(form.cleaned_data['n_clusters']), form.cleaned_data['linkage'])
+                other_graph = plot_dendrogram(model, model.labels_)
             else:
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
+                other_graph = '0'
             figure = plot_clustering(countries, model.labels_)
             table = evaluate_clustering(data, model.labels_).to_html()
             context = {'figure': figure,
                        'table': table,
-                       'form': form}
+                       'form': form,
+                       'other_graph': other_graph}
             return render(request, 'application/homepage.html', context)
         else:
             form = CustomizeReport()
