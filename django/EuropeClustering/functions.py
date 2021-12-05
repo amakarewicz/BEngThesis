@@ -2,7 +2,11 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import plotly.express as px
+import plotly.graph_objs as go
 import matplotlib.pyplot as plt
+import io
+import urllib
+import base64
 from tslearn.preprocessing import TimeSeriesScalerMeanVariance
 from tslearn.clustering import TimeSeriesKMeans
 from dtaidistance import dtw_ndim
@@ -140,7 +144,8 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array) -> None:
     fig = px.choropleth(countries, locations='countrycode', color="cluster",
                         projection='conic conformal', color_discrete_sequence=px.colors.qualitative.Pastel)
     fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
-    return fig.to_html(full_html=False, default_height=500, default_width=700)
+    fig.update_layout(showlegend=False, margin=dict(l=20, r=20, t=20, b=20), paper_bgcolor='rgba(0,0,0,0)')
+    return fig.to_html(full_html=False, default_height=400, default_width=400)
 
 
 def plot_dendrogram(model: AgglomerativeClustering, labels: np.array = None) -> None:
@@ -149,6 +154,7 @@ def plot_dendrogram(model: AgglomerativeClustering, labels: np.array = None) -> 
 
     Args:
         model (AgglomerativeClustering): [description]
+        labels (np.array): [description]
     """
     # create the counts of samples under each node
     counts = np.zeros(model.children_.shape[0])
@@ -171,7 +177,48 @@ def plot_dendrogram(model: AgglomerativeClustering, labels: np.array = None) -> 
     plt.ylabel('distance', fontsize=20)
     ax.tick_params(axis='x', which='major', labelsize=20)
     ax.tick_params(axis='y', which='major', labelsize=20)
-    return fig.to_html(full_html=False, default_height=500, default_width=700)
+    buf = io.BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+    return uri
+
+
+def plot_series(data: pd.DataFrame) -> None:
+    """
+    Plot time series of each variable, for each country.
+
+    Args:
+        data (pd.DataFrame): preprocessed dataframe with economic indexes
+    """
+    fig = go.Figure()
+    buttons = list()
+    for i in range(data.shape[1] - 3):
+        ind = data.columns[i + 3, ]
+        df_test = data[['countrycode', 'year', ind]]
+        # transposing
+        df_test_transposed = df_test.pivot_table(index='countrycode', columns=['year'], values=ind).reset_index()
+        df_test_final = df_test_transposed.rename_axis('').rename_axis("", axis="columns"
+                                                                       ).set_index('countrycode')
+        # Add Traces
+        for countrycode in df_test_final.index:
+            if i == 0:
+                fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[countrycode],
+                                         name=countrycode, visible=True))
+            else:
+                fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[countrycode],
+                                         name=countrycode, visible=False))
+        n_of_countries = df_test_final.shape[0]
+        visible = [False] * n_of_countries * i + [True] * n_of_countries + [False] * n_of_countries * (
+                    n_of_countries - i - 1)
+        buttons.append(dict(label=ind, method='update', args=[{'visible': visible}, {'title': ind}]))
+
+    updatemenus = list([dict(active=0, buttons=buttons, xanchor='right', x=1, y=1.15)])
+    fig.update_layout(updatemenus=updatemenus, title='Series',
+                      title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
+
+    return fig.to_html(full_html=False, default_height=400, default_width=500)
 
 
 def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
@@ -187,8 +234,8 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
     """
     # transform input data into adequate structure - 3D numpy array
     data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
-    data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable'])['value'].aggregate('mean').unstack(
-        'year')
+    data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable']
+                            )['value'].aggregate('mean').unstack('year')
     data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
     n_countries = data_t.shape[0]  # number of points (countries)
     time_range = data_t.shape[1]  # time range

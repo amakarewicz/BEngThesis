@@ -48,6 +48,12 @@ function Hide() {
 }
 
 window.onload = function() {
+    document.getElementById('id_variables').setAttribute('max-height', '100px');
+    document.getElementById('id_variables').setAttribute('overflow-y', 'auto');
     document.getElementById('id_algorithm').onchange = Hide;
     Hide();
+
+    // document.ready(function() {
+    //     document.getElementById('id_variables').attr('style', 'height:100px;overflow:scroll;');
+    // });
 };

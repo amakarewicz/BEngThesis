@@ -20,7 +20,6 @@ def homepage(request):
             variables = form.cleaned_data['variables']
             columns = ['country', 'countrycode', 'year'] + list(variables.values_list('name', flat=True))
             data = data[columns]
-            # print(Variable.objects.all().values_list('name', flat=True))
             if form.cleaned_data['algorithm'] == 'kmeans':
                 model = kmeans_clustering(data, int(form.cleaned_data['n_clusters']))
                 other_graph = '0'
@@ -32,9 +31,11 @@ def homepage(request):
                 other_graph = '0'
             figure = plot_clustering(countries, model.labels_)
             table = evaluate_clustering(data, model.labels_).to_html()
+            series = plot_series(data)
             context = {'figure': figure,
                        'table': table,
                        'form': form,
+                       'series': series,
                        'other_graph': other_graph}
             return render(request, 'application/homepage.html', context)
         else:

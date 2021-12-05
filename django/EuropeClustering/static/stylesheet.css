@@ -60,18 +60,18 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
     margin: 0;
 }
 
-#canvas {
-    width: 75%;
-    background-color: white;
-    height: 80%;
-    margin-left: 25%;
-}
-.graph {
-  width: 50%;
-  height: 50%;
-  /*box-sizing: border-box;*/
-  /*border: 1px solid black;*/
-  /*float: left;*/
-  /*text-align: center;*/
-  /*padding: 16px;*/
-}
+/*#canvas {*/
+/*    width: 75%;*/
+/*    background-color: white;*/
+/*    height: 80%;*/
+/*    margin-left: 25%;*/
+/*}*/
+/*.graph {*/
+/*  width: 50%;*/
+/*  height: 50%;*/
+/*  !*box-sizing: border-box;*!*/
+/*  !*border: 1px solid black;*!*/
+/*  !*float: left;*!*/
+/*  !*text-align: center;*!*/
+/*  !*padding: 16px;*!*/
+/*}*/
