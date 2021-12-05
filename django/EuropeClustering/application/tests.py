@@ -1,6 +1,5 @@
 from django.test import TestCase
 
-
 # Create your tests here.
 from application.models import Data
 from functions import *
@@ -8,20 +7,40 @@ from functions import *
 
 class MyTest(TestCase):
 
-    def test_sum(self):
-        self.assertEqual(sum([1, 2, 3]), 6)
-
     def test_kmeans_clustering(self):
-        self.assertIsInstance(kmeans_clustering(data, 4), TimeSeriesKMeans)
+        data = pd.DataFrame({'countrycode': ['ALB', 'ALB', 'AUT', 'AUT', 'ROU', 'ROU'],
+                             'country': ['Albania', 'Albania', 'Austria', 'Austria', 'Romania', 'Romania'],
+                             'year': [1991, 1992, 1991, 1992, 1991, 1992],
+                             'pop': [1234, 4234, 3452, 2342, 2342, 2354],
+                             'rgdpna': [9856, 3485, 9823, 3847, 3485, 9232]})
+
+        self.assertIsInstance(kmeans_clustering(data, 2), TimeSeriesKMeans)
+
+    def agglomerative_clustering(self):
+        data = pd.DataFrame({'countrycode': ['ALB', 'ALB', 'AUT', 'AUT', 'ROU', 'ROU'],
+                             'country': ['Albania', 'Albania', 'Austria', 'Austria', 'Romania', 'Romania'],
+                             'year': [1991, 1992, 1991, 1992, 1991, 1992],
+                             'pop': [1234, 4234, 3452, 2342, 2342, 2354],
+                             'rgdpna': [9856, 3485, 9823, 3847, 3485, 9232]})
+
+        self.assertIsInstance(agglomerative_clustering(data, 2, 'complete'), TimeSeriesKMeans)
+
+    def dbscan_clustering(self):
+        data = pd.DataFrame({'countrycode': ['ALB', 'ALB', 'AUT', 'AUT', 'ROU', 'ROU'],
+                             'country': ['Albania', 'Albania', 'Austria', 'Austria', 'Romania', 'Romania'],
+                             'year': [1991, 1992, 1991, 1992, 1991, 1992],
+                             'pop': [1234, 4234, 3452, 2342, 2342, 2354],
+                             'rgdpna': [9856, 3485, 9823, 3847, 3485, 9232]})
+
+        self.assertIsInstance(dbscan_clustering(data, 2.3, 4), TimeSeriesKMeans)
 
     @classmethod
     def main(cls):
-        # data = pd.DataFrame(list(Data.objects.all().values()))
-        # data = data.drop('id', axis=1)
-        # cls.test_kmeans_clustering(data, 4)
-        cls.test_sum()
+        cls.test_kmeans_clustering()
+        cls.agglomerative_clustering()
+        cls.dbscan_clustering()
         print('All passed')
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     MyTest.main()

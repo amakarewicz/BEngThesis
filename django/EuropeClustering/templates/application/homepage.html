@@ -20,7 +20,10 @@
             <button>Perform clustering</button>
         </form>
     </div>
+
+    {% if figure or table or series %}
     <div id="canvas">
+
         <div id="map" class="graph">
         {% if figure %}
             {{ figure|safe }}
@@ -28,6 +31,8 @@
             <p>Oops! Something went wrong.</p>
         {% endif %}
         </div>
+
+
         <div id="table" class="graph">
         {% if table %}
             {{ table|safe }}
@@ -35,6 +40,8 @@
             <p>Oops! Something went wrong.</p>
         {% endif %}
         </div>
+
+
         <div id="series" class="graph">
         {% if series %}
             {{ series|safe }}
@@ -42,8 +49,12 @@
             <p>Oops! Something went wrong.</p>
         {% endif %}
         </div>
+
+        <div id="dendrogram" class="graph">
             <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">
         </div>
+
     </div>
+    {% endif %}
 
 {% endblock %}

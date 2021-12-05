@@ -50,9 +50,7 @@ tbody {
 thead.th.indexcol, tbody.td.indexcol {width: 100px}
 thead.th.desccol, tbody.td.desccol {width: 400px}
 
-#map {
-    float: right;
-}
+
 
 .radio_select{
     list-style-type: none;
@@ -60,18 +58,34 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
     margin: 0;
 }
 
-/*#canvas {*/
-/*    width: 75%;*/
-/*    background-color: white;*/
-/*    height: 80%;*/
-/*    margin-left: 25%;*/
-/*}*/
-/*.graph {*/
-/*  width: 50%;*/
-/*  height: 50%;*/
-/*  !*box-sizing: border-box;*!*/
-/*  !*border: 1px solid black;*!*/
-/*  !*float: left;*!*/
-/*  !*text-align: center;*!*/
-/*  !*padding: 16px;*!*/
-/*}*/
+#canvas {
+    width: 75%;
+    background-color: white;
+    height: 80%;
+    margin-left: 25%;
+}
+.graph {
+  width: 40%;
+  height: 40%;
+  /*box-sizing: border-box;*/
+  /*border: 1px solid black;*/
+  /*float: left;*/
+  /*text-align: center;*/
+  /*padding: 16px;*/
+}
+
+#map {
+    float: right;
+    margin-right: 3%;
+    /*position: absolute;*/
+    /*right: 0;*/
+}
+
+#dendrogram {
+    float: right;
+}
+
+.dataframe {
+    border: none;
+    /*display: table-header-group;*/
+}

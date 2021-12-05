@@ -25,12 +25,12 @@ def homepage(request):
                 other_graph = '0'
             elif form.cleaned_data['algorithm'] == 'hierarchical':
                 model = agglomerative_clustering(data, int(form.cleaned_data['n_clusters']), form.cleaned_data['linkage'])
-                other_graph = plot_dendrogram(model, model.labels_)
+                other_graph = plot_dendrogram(model, np.array(countries.countrycode))
             else:
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
                 other_graph = '0'
             figure = plot_clustering(countries, model.labels_)
-            table = evaluate_clustering(data, model.labels_).to_html()
+            table = evaluate_clustering(data, model.labels_).to_html(index=False)
             series = plot_series(data)
             context = {'figure': figure,
                        'table': table,

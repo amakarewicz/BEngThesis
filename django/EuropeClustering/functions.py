@@ -47,20 +47,24 @@ def kmeans_clustering(data: pd.DataFrame, n_clusters: int) -> TimeSeriesKMeans:
     Returns:
         TimeSeriesKMeans: fitted clustering model
     """
-    # transform input data into adequate structure - 3D numpy array
-    data_agg = data.drop('year', axis=1).groupby(['countrycode', 'country']).agg(list)
-    n_countries = data_agg.shape[0]  # number of points (countries)
-    time_range = len(data['year'].drop_duplicates())  # time range
-    n_vars = data.shape[1] - 3  # number of economic indexes
-    # filling the array
-    data_agg_arr = np.empty(shape=(n_countries, n_vars, time_range))
-    for i in range(data_agg.shape[0]):
-        for j in range(data_agg.shape[1]):
-            data_agg_arr[i][j] = np.array(data_agg.iloc[i, j])
-    # creating and fitting a model
-    model = TimeSeriesKMeans(n_clusters=n_clusters, metric='dtw')
-    model.fit(data_agg_arr)
-    return model
+    try:
+        # transform input data into adequate structure - 3D numpy array
+        data_agg = data.drop('year', axis=1).groupby(['countrycode', 'country']).agg(list)
+        n_countries = data_agg.shape[0]  # number of points (countries)
+        time_range = len(data['year'].drop_duplicates())  # time range
+        n_vars = data.shape[1] - 3  # number of economic indexes
+        # filling the array
+        data_agg_arr = np.empty(shape=(n_countries, n_vars, time_range))
+        for i in range(data_agg.shape[0]):
+            for j in range(data_agg.shape[1]):
+                data_agg_arr[i][j] = np.array(data_agg.iloc[i, j])
+        # creating and fitting a model
+        model = TimeSeriesKMeans(n_clusters=n_clusters, metric='dtw')
+        model.fit(data_agg_arr)
+        return model
+
+    except Exception as ex:
+        print(ex)
 
 
 def agglomerative_clustering(data: pd.DataFrame, n_clusters: int, linkage: str) -> AgglomerativeClustering:
@@ -195,7 +199,7 @@ def plot_series(data: pd.DataFrame) -> None:
     fig = go.Figure()
     buttons = list()
     for i in range(data.shape[1] - 3):
-        ind = data.columns[i + 3, ]
+        ind = data.columns[i + 3,]
         df_test = data[['countrycode', 'year', ind]]
         # transposing
         df_test_transposed = df_test.pivot_table(index='countrycode', columns=['year'], values=ind).reset_index()
@@ -211,7 +215,7 @@ def plot_series(data: pd.DataFrame) -> None:
                                          name=countrycode, visible=False))
         n_of_countries = df_test_final.shape[0]
         visible = [False] * n_of_countries * i + [True] * n_of_countries + [False] * n_of_countries * (
-                    n_of_countries - i - 1)
+                n_of_countries - i - 1)
         buttons.append(dict(label=ind, method='update', args=[{'visible': visible}, {'title': ind}]))
 
     updatemenus = list([dict(active=0, buttons=buttons, xanchor='right', x=1, y=1.15)])
@@ -251,6 +255,8 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
     sil_score = silhouette_score(dtw_matrix, labels, metric='precomputed')
     dunn_index = clValid.dunn(dtw_matrix, labels)[0]
     ch_score = symbolicDA.index_G1d(dtw_matrix, labels)[0]
-    results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
-                           index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
+    # results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
+    #                        index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
+    results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
+                            'Value': [sil_score, dunn_index, ch_score]})
     return results
