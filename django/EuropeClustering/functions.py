@@ -236,27 +236,31 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
     Returns:
         pd.DataFrame: metrics values
     """
-    # transform input data into adequate structure - 3D numpy array
-    data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
-    data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable']
-                            )['value'].aggregate('mean').unstack('year')
-    data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
-    n_countries = data_t.shape[0]  # number of points (countries)
-    time_range = data_t.shape[1]  # time range
-    n_vars = data.shape[1] - 3  # number of economic indexes
-    # filling the array
-    data_t_arr = np.empty(shape=(n_countries, time_range, n_vars))
-    for i in range(n_countries):
-        for j in range(time_range):
-            data_t_arr[i][j] = np.array(data_t.iloc[i, j])
-    # calculating distances between points (countries)
-    dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
-    # calculating metric values
-    sil_score = silhouette_score(dtw_matrix, labels, metric='precomputed')
-    dunn_index = clValid.dunn(dtw_matrix, labels)[0]
-    ch_score = symbolicDA.index_G1d(dtw_matrix, labels)[0]
-    # results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
-    #                        index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
-    results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
-                            'Value': [sil_score, dunn_index, ch_score]})
+    try:
+        # transform input data into adequate structure - 3D numpy array
+        data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
+        data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable']
+                                )['value'].aggregate('mean').unstack('year')
+        data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
+        n_countries = data_t.shape[0]  # number of points (countries)
+        time_range = data_t.shape[1]  # time range
+        n_vars = data.shape[1] - 3  # number of economic indexes
+        # filling the array
+        data_t_arr = np.empty(shape=(n_countries, time_range, n_vars))
+        for i in range(n_countries):
+            for j in range(time_range):
+                data_t_arr[i][j] = np.array(data_t.iloc[i, j])
+        # calculating distances between points (countries)
+        dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
+        # calculating metric values
+        sil_score = silhouette_score(dtw_matrix, labels, metric='precomputed')
+        dunn_index = clValid.dunn(dtw_matrix, labels)[0]
+        ch_score = symbolicDA.index_G1d(dtw_matrix, labels)[0]
+        # results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
+        #                        index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
+        results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
+                                'Value': [sil_score, dunn_index, ch_score]})
+    except Exception:
+        results = pd.DataFrame({'Results': ['Application can not display results for one cluster.']})
+
     return results
