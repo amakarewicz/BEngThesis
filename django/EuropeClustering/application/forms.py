@@ -31,9 +31,22 @@ class CustomizeReport(forms.Form):
                                 widget=forms.RadioSelect(attrs={'class': "radio_select"}),
                                 label='Linkage',
                                 initial='complete')
-    eps = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
-                            label='Eps',
-                            initial=3.1)
+    # eps = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
+    #                         label='Eps',
+    #                         initial=3.1)
+    eps = forms.DecimalField(
+        label='Eps',
+        widget=forms.TextInput(
+            attrs={
+                'step': '0.1',
+                'type': 'range',
+                'value': '3.1',
+                'min': '2',
+                'max': '11'
+                # 'id': 'slider'
+            }
+        )
+    )
     min_samples = forms.ChoiceField(choices=[(x, x) for x in range(2, 20)],
                                     label='Min samples',
                                     initial=6)

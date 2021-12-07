@@ -59,4 +59,10 @@ window.onload = function() {
     // });
 };
 
+// var slider = document.getElementById("id_eps");
+// var output = document.getElementById("id_eps_value");
+// output.innerHTML = slider.value;
 
+// document.getElementById("id_eps").oninput = function() {
+//   document.getElementById("id_eps_value").innerHTML = document.getElementById("id_eps").value;
+// };

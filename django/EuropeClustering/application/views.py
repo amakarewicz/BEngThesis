@@ -24,7 +24,8 @@ def homepage(request):
                 model = kmeans_clustering(data, int(form.cleaned_data['n_clusters']))
                 other_graph = '0'
             elif form.cleaned_data['algorithm'] == 'hierarchical':
-                model = agglomerative_clustering(data, int(form.cleaned_data['n_clusters']), form.cleaned_data['linkage'])
+                model = agglomerative_clustering(data, int(form.cleaned_data['n_clusters']),
+                                                 form.cleaned_data['linkage'])
                 other_graph = plot_dendrogram(model, np.array(countries.countrycode))
             else:
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
@@ -57,3 +58,7 @@ def readabout(request):
                'algorithms': algorithms}
 
     return render(request, 'application/readabout.html', context)
+
+
+def report(request):
+    return render(request, 'application/report.html')
