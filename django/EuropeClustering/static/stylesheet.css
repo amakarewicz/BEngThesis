@@ -73,7 +73,10 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
   /*text-align: center;*/
   /*padding: 16px;*/
 }
-
+#dbscan {
+    float:right;
+    margin-right: 3%;
+}
 #map {
     float: right;
     margin-right: 3%;

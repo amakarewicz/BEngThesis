@@ -8,4 +8,11 @@
         <p>Oops! Something went wrong.</p>
     {% endif %}
     </div>
+    <div id="dbscan" class="graph">
+    {% if dbscan %}
+        {{ dbscan|safe }}
+    {% else %}
+        <p>Oops! Something went wrong.</p>
+    {% endif %}
+    </div>
 {% endblock %}

@@ -64,5 +64,6 @@ def report(request):
     metric_data = pd.DataFrame(list(MetricsValues.objects.all().values()))
     metric_data = metric_data.drop('id', axis=1)
     metrics = plot_metrics(metric_data)
-    context = {'metrics': metrics}
+    dbscan = plot_dbscan(data)
+    context = {'metrics': metrics, 'dbscan': dbscan}
     return render(request, 'application/report.html', context)

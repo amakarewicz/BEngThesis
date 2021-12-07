@@ -320,3 +320,62 @@ def plot_metrics(data: pd.DataFrame) -> None:
     ]))
     fig.update_layout(title='Metrics',title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
     return fig.to_html(full_html=False, default_height=400, default_width=500)
+
+
+def plot_dbscan(data):
+    """AI is creating summary for plot_dbscan
+
+    Args:
+        data ([type]): [description]
+    """
+    data_t = data.melt(id_vars=['countrycode', 'country', 'year'])
+    data_t = data_t.groupby(['countrycode', 'country', 'year', 'variable'])['value'].aggregate('mean').unstack(
+        'year')
+    data_t = data_t.reset_index().drop('variable', axis=1).groupby(['countrycode', 'country']).agg(list)
+    n_countries = data_t.shape[0]  # number of points (countries)
+    time_range = data_t.shape[1]  # time range
+    n_vars = data.shape[1] - 3  # number of economic indexes
+    # filling the array
+    data_t_arr = np.empty(shape=(n_countries, time_range, n_vars))
+    for i in range(n_countries):
+        for j in range(time_range):
+            data_t_arr[i][j] = np.array(data_t.iloc[i, j])
+    # calculating distances between points (countries)
+    dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
+
+    countries = data[['countrycode','country']].drop_duplicates().reset_index(drop=True)
+
+    eps_grid = [3, 3.1, 3.2, 3.3, 3.4, 3.5]
+    min_samples_grid = [2,3,4,5,6]
+    plot_data = []
+    for eps in eps_grid:
+        for min_samples in min_samples_grid:
+            model = DBSCAN(eps=eps, min_samples=min_samples, metric='precomputed')
+            model.fit(dtw_matrix)
+            plot_data.append(dict(type='choropleth',
+                    locations = countries['countrycode'].astype(str),
+                    z=model.labels_, showscale=False))
+    # (3,2), (3,3) ... (3.1, 2), (3.1, 3) 
+
+    steps = []
+    i=0
+    for eps in eps_grid:
+        for min_samples in min_samples_grid:
+            step = dict(method='restyle',
+                        args=['visible', [False] * len(plot_data)],
+                        label='{} / {}'.format(eps, min_samples))
+            step['args'][1][i] = True
+            steps.append(step)
+            i+=1
+
+    sliders = [dict(active=0,
+                    pad={"t": 1},
+                    steps=steps,
+                    currentvalue={'prefix' : 'Eps - ', 'suffix' : ' - min samples'})]
+    
+    layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range':[35,75]},
+                           lonaxis={'range': [-15, 45]}), sliders=sliders)
+    fig = go.Figure(dict(data=plot_data, layout=layout))
+    fig.update_layout(showlegend=False)
+    fig.update_traces(showlegend=False, selector = dict(type='choropleth'))
+    return fig.to_html(full_html=False, default_height=400, default_width=500)
