@@ -52,3 +52,14 @@ class Data(models.Model):
 
     def __str__(self):
         return self.countrycode
+
+
+class MetricsValues(models.Model):
+    algorithm = models.CharField('algorithm', max_length=50)
+    n_clusters = models.IntegerField('n_clusters')
+    silhouette = models.FloatField('silhouette', blank=True, null=True)
+    chscore = models.FloatField('chscore', blank=True, null=True)
+    dunnindex = models.FloatField('dunnindex', blank=True, null=True)
+
+    def __str__(self):
+        return self.algorithm

@@ -283,3 +283,40 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
 
     finally:
         return results
+
+
+def plot_metrics(data: pd.DataFrame) -> None:
+    """AI is creating summary for plot_metrics
+
+    Args:
+        data (pd.DataFrame): [description]
+    """
+    fig = go.Figure()
+    buttons = list()
+    for i in range(data.shape[1]-2):
+        m = data.columns[i+2,]
+        df_test = data[['algorithm','n_clusters', m]]
+
+        # transposing
+        df_test_transposed = df_test.pivot_table(index='algorithm', columns=['n_clusters'], values=m).reset_index()
+        df_test_final = df_test_transposed.rename_axis('').rename_axis("", axis="columns").set_index('algorithm')
+
+        # Add Traces
+        for alg in df_test_final.index:
+            if i==0:
+                fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[alg],
+                        name=alg, visible=True))            
+            else:
+                fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[alg],
+                        name=alg, visible=False))
+        n_of_countries = df_test_final.shape[0]
+        visible = [False]*n_of_countries*i + [True]*n_of_countries + [False]*n_of_countries*(n_of_countries-i-1)
+        buttons.append(dict(label = m,
+                    method = 'update',
+                    args = [{'visible': visible},
+                            {'title': m}]))    
+    fig.update_layout(dict(updatemenus=[
+                        dict(type='dropdown', buttons=buttons, xanchor='right', x=1, y=1.15, active=0)#, showactive=True)                    ]
+    ]))
+    fig.update_layout(title='Metrics',title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
+    return fig.to_html(full_html=False, default_height=400, default_width=500)

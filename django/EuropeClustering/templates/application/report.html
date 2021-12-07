@@ -1,5 +1,11 @@
 {% extends "application/base.html" %}
 
 {% block content %}
-<p>Hello World</p>
+    <div id="metrics" class="graph">
+    {% if metrics %}
+        {{ metrics|safe }}
+    {% else %}
+        <p>Oops! Something went wrong.</p>
+    {% endif %}
+    </div>
 {% endblock %}
