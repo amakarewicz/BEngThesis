@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plotly</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="graph"></div>
+    <script>
+Plotly.newPlot('graph', [{
+  y: [1, 2, 1, 2],
+  name: 'A'
+}, {
+  y: [2, 3, 2, 3],
+  name: 'B'
+}, {
+  y: [4, 5, 5, 4],
+  name: 'C'
+}], {
+  margin: {b: 250},
+  sliders: [{
+    y: -0.1,
+    steps: [{
+      label: 'A - 1',
+      method: 'restyle',
+      args: ['opacity', 1, [0]]
+    }, {
+      label: 'A - 0.1',
+      method: 'restyle',
+      args: ['opacity', 0.1, [0]]
+    }]
+  }, {
+    y: -0.5,
+    steps: [{
+      label: 'B - 1',
+      method: 'restyle',
+      args: ['opacity', 1, [0,1]]
+    }, {
+      label: 'B - 0.1',
+      method: 'restyle',
+      args: ['opacity', 0.1, [0,1]]
+    }]},
+    {
+    y: -1,
+    steps: [{
+      label: 'C - 1',
+      method: 'restyle',
+      args: ['opacity', 1, [2]]
+    }, {
+      label: 'C - 0.1',
+      method: 'restyle',
+      args: ['opacity', 0.1, [2]]
+    }]},
+    {
+    y: -1.5,
+    steps: [{
+      label: 'D - 1',
+      method: 'restyle',
+      args: ['opacity', 1, [0]]
+    }, {
+      label: 'D - 0.1',
+      method: 'restyle',
+      args: ['opacity', 0.1, [0]]
+    }]
+  }]
+})
+     </script>
+</body>
+</html>
