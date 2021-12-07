@@ -73,10 +73,7 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
   /*text-align: center;*/
   /*padding: 16px;*/
 }
-#dbscan {
-    float:right;
-    margin-right: 3%;
-}
+
 #map {
     float: right;
     margin-right: 3%;
@@ -84,7 +81,7 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
     /*right: 0;*/
 }
 
-#dendrogram {
+.dendrogram {
     float: right;
 }
 
@@ -92,3 +89,28 @@ thead.th.desccol, tbody.td.desccol {width: 400px}
     border: none;
     /*display: table-header-group;*/
 }
+
+/*#report_page {display: flex}*/
+
+/*#dbscan {*/
+/*    flex: 50%;*/
+/*    padding: 10px;*/
+/*    padding-top: 0px;*/
+/*    text-align: justify;*/
+/*    !*width: 500px;*!*/
+/*    !*height: 400px;*!*/
+/*    !*float:right;*!*/
+/*    !*margin-right: 3%;*!*/
+/*}*/
+
+/*.metrics {*/
+/*    flex: 50%;*/
+/*    padding: 10px;*/
+/*    padding-top: 0px;*/
+/*    text-align: justify;*/
+/*    !*width: 500px;*!*/
+/*    !*height: 400px;*!*/
+/*    !*float:right;*!*/
+/*    !*margin-right: 3%;*!*/
+/*}*/
+

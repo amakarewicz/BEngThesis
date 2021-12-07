@@ -1,18 +1,32 @@
 {% extends "application/base.html" %}
 
 {% block content %}
-    <div id="metrics" class="graph">
-    {% if metrics %}
-        {{ metrics|safe }}
-    {% else %}
-        <p>Oops! Something went wrong.</p>
-    {% endif %}
-    </div>
-    <div id="dbscan" class="graph">
-    {% if dbscan %}
-        {{ dbscan|safe }}
-    {% else %}
-        <p>Oops! Something went wrong.</p>
-    {% endif %}
+    <div>
+        <div class="header">
+            <h2>Testing algorithm parameters</h2>
+        </div>
+        {#    class="graph"#}
+        <p>In this application, the user can perform clustering of European countries using chosen algorithm and parameters. The following report presents the behaviour of the algorithms based on chosen parameters.</p>
+        <div>
+        {% if metrics %}
+            {{ metrics|safe }}
+        {% else %}
+            <p>Oops! Something went wrong.</p>
+        {% endif %}
+            <p>In the figure above, there are presented KMeans and Hierarchical algorithms’ results for a different number of chosen clusters measured by one of the three available evaluation metrics.</p>
+            <ul>
+                <li>KMeans results in most cases are lower than Hierarchical results. It has the worst results for the Silhouette score and Dunn index. The only measure that favours KMeans is Calinski-Harabasz Index which means the KMeans algorithm groups similar countries in one cluster but does not necessarily separate clusters in a proper way. The best number of clusters for KMeans is 3 or 4.</li>
+                <li>The best Hierarchical algorithm variants are complete and average. The "complete" variant has more similar countries in one cluster (according to the Calinski-Harabasz index) while the "average" variant has better-separated clusters (according to the Dunn index). Furthermore, the complete variant has more stable results. Like for KMeans, Hierarchical results suggest choosing 3 or 4 clusters.</li>
+            </ul>
+        </div>
+        {#    class="graph"#}
+        <div>
+        {% if dbscan %}
+            {{ dbscan|safe }}
+        {% else %}
+            <p>Oops! Something went wrong.</p>
+        {% endif %}
+            <p>Because the DBSCAN algorithm does not provide an option to choose a number of clusters, its results are presented in a separate figure. Burgundy and blue colours represent outliers that should not be included in any cluster. DBSCAN creates from 1 to 3 clusters depending on chosen parameters. Choosing a bigger limit of the minimum number of countries forming a cluster (min samples) leads to an increasing number of outliers. Choosing a bigger eps parameter leads to creating a smaller number of clusters.</p>
+        </div>
     </div>
 {% endblock %}
