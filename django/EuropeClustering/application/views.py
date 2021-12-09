@@ -14,6 +14,9 @@ def homepage(request):
     data = data.drop('id', axis=1)
     countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
 
+    dataOriginal = pd.DataFrame(list(DataOriginal.objects.all().values()))
+    dataOriginal = dataOriginal.drop('id', axis=1)
+
     if request.method == 'POST':
         form = CustomizeReport(request.POST)
         if form.is_valid():
@@ -30,11 +33,13 @@ def homepage(request):
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
             figure = plot_clustering(countries, model.labels_)
             table = evaluate_clustering(data, model.labels_).to_html(index=False)
+            cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False)
             series = plot_series(data)
             context = {'figure': figure,
                        'table': table,
                        'form': form,
-                       'series': series}
+                       'series': series,
+                       'cluster_info': cluster_info}
             return render(request, 'application/homepage.html', context)
         else:
             form = CustomizeReport()

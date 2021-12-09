@@ -22,7 +22,7 @@
         </form>
     </div>
 
-    {% if figure or table or series %}
+    {% if figure or table or series or cluster_info%}
     <div id="canvas">
 
         <div id="map" class="graph">
@@ -53,6 +53,14 @@
 
         <div id="dendrogram" class="graph">
             <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">
+        </div>
+
+        <div id="cluster_info" class="graph">
+        {% if cluster_info %}
+            {{ cluster_info|safe }}
+        {% else %}
+            <p>Oops! Something went wrong.</p>
+        {% endif %}
         </div>
 
     </div>

@@ -293,9 +293,9 @@ def plot_metrics(data: pd.DataFrame) -> None:
     """
     fig = go.Figure()
     buttons = list()
-    for i in range(data.shape[1]-2):
-        m = data.columns[i+2,]
-        df_test = data[['algorithm','n_clusters', m]]
+    for i in range(data.shape[1] - 2):
+        m = data.columns[i + 2,]
+        df_test = data[['algorithm', 'n_clusters', m]]
 
         # transposing
         df_test_transposed = df_test.pivot_table(index='algorithm', columns=['n_clusters'], values=m).reset_index()
@@ -303,22 +303,24 @@ def plot_metrics(data: pd.DataFrame) -> None:
 
         # Add Traces
         for alg in df_test_final.index:
-            if i==0:
+            if i == 0:
                 fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[alg],
-                        name=alg, visible=True))            
+                                         name=alg, visible=True))
             else:
                 fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[alg],
-                        name=alg, visible=False))
+                                         name=alg, visible=False))
         n_of_countries = df_test_final.shape[0]
-        visible = [False]*n_of_countries*i + [True]*n_of_countries + [False]*n_of_countries*(n_of_countries-i-1)
-        buttons.append(dict(label = m,
-                    method = 'update',
-                    args = [{'visible': visible},
-                            {'title': m}]))    
+        visible = [False] * n_of_countries * i + [True] * n_of_countries + [False] * n_of_countries * (
+                    n_of_countries - i - 1)
+        buttons.append(dict(label=m,
+                            method='update',
+                            args=[{'visible': visible},
+                                  {'title': m}]))
     fig.update_layout(dict(updatemenus=[
-                        dict(type='dropdown', buttons=buttons, xanchor='right', x=1, y=1.15, active=0)#, showactive=True)                    ]
+        dict(type='dropdown', buttons=buttons, xanchor='right', x=1, y=1.15, active=0)
+        # , showactive=True)                    ]
     ]))
-    fig.update_layout(title='Metrics',title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
+    fig.update_layout(title='Metrics', title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
     return fig.to_html(full_html=False, default_height=400, default_width=500)
 
 
@@ -343,22 +345,22 @@ def plot_dbscan(data):
     # calculating distances between points (countries)
     dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
 
-    countries = data[['countrycode','country']].drop_duplicates().reset_index(drop=True)
+    countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
 
     eps_grid = [3, 3.1, 3.2, 3.3, 3.4, 3.5]
-    min_samples_grid = [2,3,4,5,6]
+    min_samples_grid = [2, 3, 4, 5, 6]
     plot_data = []
     for eps in eps_grid:
         for min_samples in min_samples_grid:
             model = DBSCAN(eps=eps, min_samples=min_samples, metric='precomputed')
             model.fit(dtw_matrix)
             plot_data.append(dict(type='choropleth',
-                    locations = countries['countrycode'].astype(str),
-                    z=model.labels_, showscale=False))
+                                  locations=countries['countrycode'].astype(str),
+                                  z=model.labels_, showscale=False))
     # (3,2), (3,3) ... (3.1, 2), (3.1, 3) 
 
     steps = []
-    i=0
+    i = 0
     for eps in eps_grid:
         for min_samples in min_samples_grid:
             step = dict(method='restyle',
@@ -366,16 +368,33 @@ def plot_dbscan(data):
                         label='{} / {}'.format(eps, min_samples))
             step['args'][1][i] = True
             steps.append(step)
-            i+=1
+            i += 1
 
     sliders = [dict(active=0,
                     pad={"t": 1},
                     steps=steps,
-                    currentvalue={'prefix' : 'Eps - ', 'suffix' : ' - min samples'})]
-    
-    layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range':[35,75]},
+                    currentvalue={'prefix': 'Eps - ', 'suffix': ' - min samples'})]
+
+    layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range': [35, 75]},
                            lonaxis={'range': [-15, 45]}), sliders=sliders, title='DBSCAN')
     fig = go.Figure(dict(data=plot_data, layout=layout))
-    fig.update_traces(showlegend=False, selector = dict(type='choropleth'))
+    fig.update_traces(showlegend=False, selector=dict(type='choropleth'))
     fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
     return fig.to_html(full_html=False, default_height=400, default_width=500)
+
+
+def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
+    """
+    Function is used to create summary table for clusters
+
+    :param data: pandas data frame with original data
+    :param labels: Cluster labels
+    :return: pandas data frame with mean values for clusters
+    """
+
+    try:
+        data_2019 = data[data.year == 2019]
+        data_2019['label'] = labels
+        return data_2019.groupby('label').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']]
+    except Exception as ex:
+        print(ex)
