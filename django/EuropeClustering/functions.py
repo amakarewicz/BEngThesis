@@ -374,8 +374,8 @@ def plot_dbscan(data):
                     currentvalue={'prefix' : 'Eps - ', 'suffix' : ' - min samples'})]
     
     layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range':[35,75]},
-                           lonaxis={'range': [-15, 45]}), sliders=sliders)
+                           lonaxis={'range': [-15, 45]}), sliders=sliders, title='DBSCAN')
     fig = go.Figure(dict(data=plot_data, layout=layout))
-    fig.update_layout(showlegend=False)
     fig.update_traces(showlegend=False, selector = dict(type='choropleth'))
+    fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
     return fig.to_html(full_html=False, default_height=400, default_width=500)
