@@ -59,6 +59,10 @@ window.onload = function() {
     // });
 };
 
+load_screen = function(){
+        document.getElementById('canvas').append('<div id="loading" style="background-color: red">Loading...</div>')
+}
+
 // var slider = document.getElementById("id_eps");
 // var output = document.getElementById("id_eps_value");
 // output.innerHTML = slider.value;

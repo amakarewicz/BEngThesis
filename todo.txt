@@ -1,0 +1,41 @@
+# Homepage #
+
+> Puste linie między parametrami
+> Poprawić eps
+> Wybór parametrów (?)
+> Tooltip mapka
+> Tooltip Series
+> Orginalne dane series
+> tabela layout
+> Tytuł mapy - DONE
+> Obrazek ładowania strony - NIE DZIAŁA
+> Grafika na start
+> Wyniki Inf (zapytać)
+> Druga tabela (podsumowanie klastrów)
+> Series Select/deselect (?)
+> Layout
+
+# Readabout #
+
+> Druga tabela
+> tabele layout
+
+# Report #
+
+> Mapka slidery
+> Mapka kolory
+> Mapka tooltip (oznaczyc outliery)
+> Coś
+
+# Ogólne #
+
+> Segmentacja
+> Strefa euro
+> Testy (?)
+
+
+######################################################
+TO DO
+######################################################
+> Segmentacja
+> Strefa Euro

@@ -3,7 +3,7 @@
 {% block content %}
     <div id="parameters">
         <h3>Customize report</h3>
-        <form method="post">
+        <form method="post" onsubmit=load_screen()>
             {% csrf_token %}
 {#            {{ form.as_p }}#}
             {{ form.variables.label_tag }}{{ form.variables }} {# DODAC PODZIAL NA GRUPY ??? #}
@@ -18,51 +18,48 @@
             <br/>
             {{ form.min_samples.label_tag }}{{ form.min_samples }}
             <br/>
-            <button>Perform clustering</button>
+            <input type="submit" onsubmit=load_screen()>Perform clustering</input>
         </form>
     </div>
 
     {% if figure or table or series or cluster_info%}
-    <div id="canvas">
-
-        <div id="map" class="graph">
-        {% if figure %}
-            {{ figure|safe }}
-        {% else %}
-            <p>Oops! Something went wrong.</p>
-        {% endif %}
+    <div id="canvas" style="display:flex">
+        <div class="column2">
+            <div id="table" >
+            {% if table %}
+                {{ table|safe }}
+            {% else %}
+                <p>Oops! Something went wrong.</p>
+            {% endif %}
+            </div>
+            <div id="series" class="graph">
+                {% if series %}
+                    {{ series|safe }}
+                {% else %}
+                    <p>Oops! Something went wrong.</p>
+                {% endif %}
+            </div>
         </div>
-
-
-        <div id="table" class="graph">
-        {% if table %}
-            {{ table|safe }}
-        {% else %}
-            <p>Oops! Something went wrong.</p>
-        {% endif %}
+{#        <div class="column2">#}
+        <div id="map" class="graph" style="float:right">
+                {% if figure %}
+                    {{ figure|safe }}
+                {% else %}
+                    <p>Oops! Something went wrong.</p>
+                {% endif %}
         </div>
+{#            <div id="dendrogram" class="graph">#}
+{#                <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">#}
+{#            </div>#}
 
-
-        <div id="series" class="graph">
-        {% if series %}
-            {{ series|safe }}
-        {% else %}
-            <p>Oops! Something went wrong.</p>
-        {% endif %}
+        <div id="cluster_info" style="float:right">
+                {% if cluster_info %}
+                    {{ cluster_info|safe }}
+                {% else %}
+                    <p>Oops! Something went wrong.</p>
+                {% endif %}
         </div>
-
-        <div id="dendrogram" class="graph">
-            <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">
-        </div>
-
-        <div id="cluster_info" class="graph">
-        {% if cluster_info %}
-            {{ cluster_info|safe }}
-        {% else %}
-            <p>Oops! Something went wrong.</p>
-        {% endif %}
-        </div>
-
+        #</div>
     </div>
     {% endif %}
 

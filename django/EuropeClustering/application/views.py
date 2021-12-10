@@ -32,8 +32,12 @@ def homepage(request):
             else:
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
             figure = plot_clustering(countries, model.labels_)
-            table = evaluate_clustering(data, model.labels_).to_html(index=False)
-            cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False)
+            table = evaluate_clustering(data, model.labels_).to_html(index=False).\
+                replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
+                replace('<thead id="tbody">', '<tbody>')
+            cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False).\
+                replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
+                replace('<thead id="tbody">', '<tbody>')
             series = plot_series(data)
             context = {'figure': figure,
                        'table': table,

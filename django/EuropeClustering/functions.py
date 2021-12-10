@@ -13,6 +13,7 @@ from dtaidistance import dtw_ndim
 from scipy.cluster.hierarchy import dendrogram
 from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
 from sklearn.metrics import silhouette_score
+pd.options.mode.chained_assignment = None  # default='warn'
 
 # Using R inside python
 import rpy2.robjects.packages as rpackages
@@ -159,9 +160,16 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array) -> str:
         labels = labels.astype(str)
         countries["cluster"] = pd.Series(labels)
         fig = px.choropleth(countries, locations='countrycode', color="cluster",
-                            projection='conic conformal', color_discrete_sequence=px.colors.qualitative.Pastel)
+                            projection='conic conformal', color_discrete_sequence=px.colors.qualitative.Pastel,
+                            hover_name="country", hover_data=["countrycode", "cluster"], title='Clustering results',
+
+                            )
         fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
-        fig.update_layout(showlegend=False, margin=dict(l=20, r=20, t=20, b=20), paper_bgcolor='rgba(0,0,0,0)')
+        fig.update_layout(showlegend=False, margin=dict(l=20, r=20, t=40, b=20), paper_bgcolor='rgba(0,0,0,0)',
+                          hoverlabel=dict(
+                              bgcolor="white",
+                              font_size=14
+                          ))
         return fig.to_html(full_html=False, default_height=400, default_width=400)
 
     except Exception as ex:
@@ -394,7 +402,7 @@ def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
 
     try:
         data_2019 = data[data.year == 2019]
-        data_2019['label'] = labels
-        return data_2019.groupby('label').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']]
+        data_2019.loc[:, 'Cluster'] = labels
+        return data_2019.groupby('Cluster').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']].reset_index()
     except Exception as ex:
         print(ex)
