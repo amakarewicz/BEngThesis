@@ -401,6 +401,7 @@ def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
     """
 
     try:
+        pd.options.display.float_format = '{:.2f}'.format
         data_2019 = data[data.year == 2019]
         data_2019.loc[:, 'Cluster'] = labels
         return data_2019.groupby('Cluster').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']].reset_index()

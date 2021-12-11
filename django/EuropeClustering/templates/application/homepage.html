@@ -1,5 +1,4 @@
 {% extends "application/base.html" %}
-
 {% block content %}
     <div id="parameters">
         <h3>Customize report</h3>
@@ -18,12 +17,21 @@
             <br/>
             {{ form.min_samples.label_tag }}{{ form.min_samples }}
             <br/>
-            <input type="submit" onsubmit=load_screen()>Perform clustering</input>
+            <input type="submit" value="Perform clustering" onsubmit=load_screen()>
         </form>
     </div>
 
-    {% if figure or table or series or cluster_info%}
+
+
+
     <div id="canvas" style="display:flex">
+
+    <div id="loading" style="display: none; background-color: red"> Loading...</div>
+
+{#    <div id="loader"></div>#}
+{#	<div style="display:none;" id="myDiv" class="animate-bottom"><div/>#}
+
+    {% if figure or table or series or cluster_info%}
         <div class="column2">
             <div id="table" >
             {% if table %}
@@ -40,27 +48,28 @@
                 {% endif %}
             </div>
         </div>
-{#        <div class="column2">#}
-        <div id="map" class="graph" style="float:right">
-                {% if figure %}
-                    {{ figure|safe }}
-                {% else %}
-                    <p>Oops! Something went wrong.</p>
-                {% endif %}
-        </div>
-{#            <div id="dendrogram" class="graph">#}
-{#                <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">#}
-{#            </div>#}
+        <div class="column2">
+            <div id="map" class="graph" style="float:right">
+                    {% if figure %}
+                        {{ figure|safe }}
+                    {% else %}
+                        <p>Oops! Something went wrong.</p>
+                    {% endif %}
+            </div>
+    {#            <div id="dendrogram" class="graph">#}
+    {#                <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">#}
+    {#            </div>#}
 
-        <div id="cluster_info" style="float:right">
-                {% if cluster_info %}
-                    {{ cluster_info|safe }}
-                {% else %}
-                    <p>Oops! Something went wrong.</p>
-                {% endif %}
+            <div id="cluster_info" style="float:right">
+                    {% if cluster_info %}
+                        {{ cluster_info|safe }}
+                    {% else %}
+                        <p>Oops! Something went wrong.</p>
+                    {% endif %}
+            </div>
         </div>
-        #</div>
-    </div>
     {% endif %}
+    </div>
+
 
 {% endblock %}

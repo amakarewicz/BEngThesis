@@ -102,3 +102,8 @@ th, td {
     border: none;
     /*display: table-header-group;*/
 }
+
+div#loading {
+    background-color: #ff0000;
+    display: none;
+}

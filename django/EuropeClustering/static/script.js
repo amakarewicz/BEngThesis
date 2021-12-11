@@ -60,7 +60,13 @@ window.onload = function() {
 };
 
 load_screen = function(){
-        document.getElementById('canvas').append('<div id="loading" style="background-color: red">Loading...</div>')
+        // document.getElementById('canvas').append('<div id="loading" style="background-color: #ff0000">Loading...</div>')
+        document.getElementById('loading').style.display = 'block';
+
+        const columns = document.getElementsByClassName('column2')
+        for (var i = 0; i < columns.length; i++) {
+            columns[i].style.display = 'none';
+        }
 }
 
 // var slider = document.getElementById("id_eps");
