@@ -21,9 +21,6 @@
         </form>
     </div>
 
-
-
-
     <div id="canvas" style="display:flex">
 
     <div id="loading" style="display: none; background-color: red"> Loading...</div>
@@ -34,6 +31,7 @@
     {% if figure or table or series or cluster_info%}
         <div class="column2">
             <div id="table" >
+            <h2>Metrics</h2><br>
             {% if table %}
                 {{ table|safe }}
             {% else %}

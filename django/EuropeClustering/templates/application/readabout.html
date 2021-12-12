@@ -17,16 +17,18 @@
                 <div class="row">
                     <h3>Data</h3>
                     <p>Data was collected from Penn World Table, World Bank Open Data and UNDP's Human Development Reports.  See the table below for more information about indicators available for analysis.</p>
-                    <table>
+                    <table id="variables">
                         <thead>
                             <tr>
-                                <th class='indexcol'>Index</th><th class='desccol'>Description</th>
+                                <th class='indexcol'>Index</th>
+                                <th class='desccol'>Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for variable in variables %}
                             <tr>
-                                <td class='indexcol'>{{ variable.name }}</td><td class='desccol'>{{ variable.description }}</td>
+                                <td class='indexcol'>{{ variable.name }}</td>
+                                <td class='desccol'>{{ variable.description }}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

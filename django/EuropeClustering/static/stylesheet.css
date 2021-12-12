@@ -17,6 +17,7 @@ html, body {
     padding: 10px;
     padding-top: 0px;
     text-align: justify;
+    justify-content: flex-start;
 }
 
 .report_graph {flex: 50%;
@@ -49,18 +50,16 @@ th, td {
     text-align: left; padding: 5px;
 }
 
-/*thead, tbody { display: block; }*/
+thead, tbody { display: block; }
 
-/*tbody {*/
-/*    height: 100px;*/
-/*    overflow-y: auto;*/
-/*    overflow-x: hidden;*/
-/*}*/
-
+#variables tbody {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 /*!*Something wrong with thead*!*/
 /*thead.th.indexcol, tbody.td.indexcol {width: 100px}*/
 /*thead.th.desccol, tbody.td.desccol {width: 400px}*/
-
 
 
 .radio_select{
@@ -93,7 +92,7 @@ th, td {
     /*position: absolute;*/
     /*right: 0;*/
 }
-
+#table {height: 40%}
 /*#dendrogram {*/
 /*    float: right;*/
 /*}*/
@@ -107,3 +106,45 @@ div#loading {
     background-color: #ff0000;
     display: none;
 }
+
+/*table {*/
+/*  width: 100%;*/
+/*  text-align: left;*/
+/*}*/
+/*tr {*/
+/*  height: 30px;*/
+/*  padding-top: 10px;*/
+/*}*/
+/*tbody {*/
+/*  height: 150px;*/
+/*  overflow-y: auto;*/
+/*  overflow-x: hidden;*/
+/*}*/
+/*th,*/
+/*td,*/
+/*tr,*/
+/*thead,*/
+/*tbody {*/
+/*  display: block;*/
+/*}*/
+/*td,*/
+/*th {*/
+/*  float: left;*/
+/*}*/
+/*td:nth-child(1),*/
+/*th:nth-child(1) {*/
+/*  width: 50%;*/
+/*}*/
+/*td:nth-child(2),*/
+/*th:nth-child(2) {*/
+/*  width: 50%;*/
+/*  float: left;*/
+/*}*/
+/*!* some colors *!*/
+/*thead {*/
+/*  background-color: #333333;*/
+/*  color: #fdfdfd;*/
+/*}*/
+/*table tbody tr:nth-child(even) {*/
+/*  background-color: #dddddd;*/
+/*}*/

@@ -3,22 +3,22 @@
 > Puste linie między parametrami
 > Poprawić eps
 > Wybór parametrów (?)
-> Tooltip mapka
-> Tooltip Series
+> Tooltip mapka - DONE
+> Tooltip Series - DONE (czy unified?)
 > Orginalne dane series
-> tabela layout
+> tabela layout - DONE
 > Tytuł mapy - DONE
-> Obrazek ładowania strony - NIE DZIAŁA
+> Obrazek ładowania strony - IN PROGRESS
 > Grafika na start
-> Wyniki Inf (zapytać)
-> Druga tabela (podsumowanie klastrów)
+> Wyniki Inf (zapytać) 
+> Druga tabela (podsumowanie klastrów) - (dodać formatowanie i kolorki (?))
 > Series Select/deselect (?)
 > Layout
 
 # Readabout #
 
 > Druga tabela
-> tabele layout
+> tabele layout 
 
 # Report #
 
