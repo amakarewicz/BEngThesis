@@ -32,18 +32,25 @@ def homepage(request):
             else:
                 model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
             figure = plot_clustering(countries, model.labels_)
-            table = evaluate_clustering(data, model.labels_).to_html(index=False).\
+            eval_clustering = evaluate_clustering(data, model.labels_)
+            table = eval_clustering.to_html(index=False).\
                 replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
                 replace('<thead id="tbody">', '<tbody>')
             cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False).\
                 replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
                 replace('<thead id="tbody">', '<tbody>')
             series = plot_series(data)
-            context = {'figure': figure,
-                       'table': table,
-                       'form': form,
-                       'series': series,
-                       'cluster_info': cluster_info}
+            if eval_clustering.shape[0] > 1:
+                context = {'figure': figure,
+                           'table': table,
+                           'form': form,
+                           'series': series,
+                           'cluster_info': cluster_info}
+            else:
+                context = {
+                    'table': table,
+                    'form': form
+                }
             return render(request, 'application/homepage.html', context)
         else:
             form = CustomizeReport()

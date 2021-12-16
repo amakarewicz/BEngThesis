@@ -13,6 +13,7 @@ from dtaidistance import dtw_ndim
 from scipy.cluster.hierarchy import dendrogram
 from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
 from sklearn.metrics import silhouette_score
+
 pd.options.mode.chained_assignment = None  # default='warn'
 
 # Using R inside python
@@ -233,21 +234,23 @@ def plot_series(data: pd.DataFrame) -> str:
         for countrycode in df_test_final.index:
             if i == 0:
                 fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[countrycode],
-                                         name=countrycode, visible=True, text=[countries.loc[countrycode, 'country']]*30,
+                                         name=countrycode, visible=True,
+                                         text=[countries.loc[countrycode, 'country']] * 30,
                                          hovertemplate=
                                          "Country: %{text}<br>" +
                                          "Year: %{x}<br>" +
                                          "Value: %{y}" +
-                                         "<extra></extra>",  #mode='lines+markers'
+                                         "<extra></extra>",  # mode='lines+markers'
                                          ))
             else:
                 fig.add_trace(go.Scatter(x=df_test_final.columns, y=df_test_final.loc[countrycode],
-                                         name=countrycode, visible=False,  text=[countries.loc[countrycode, 'country']]*30,
+                                         name=countrycode, visible=False,
+                                         text=[countries.loc[countrycode, 'country']] * 30,
                                          hovertemplate=
                                          "Country: %{text}<br>" +
                                          "Year: %{x}<br>" +
                                          "Value: %{y}" +
-                                         "<extra></extra>",  #mode='lines+markers'
+                                         "<extra></extra>",  # mode='lines+markers'
                                          ))
         n_of_countries = df_test_final.shape[0]
         visible = [False] * n_of_countries * i + [True] * n_of_countries + [False] * n_of_countries * (
@@ -257,12 +260,12 @@ def plot_series(data: pd.DataFrame) -> str:
     updatemenus = list([dict(active=0, buttons=buttons, xanchor='right', x=1, y=1.15)])
     fig.update_layout(updatemenus=updatemenus, title='Series',
                       title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
-                      #hovermode="x unified",  hoverlabel=dict(font_size=10))
+    # hovermode="x unified",  hoverlabel=dict(font_size=10))
 
     # fig.update_traces(hovertemplate="<b>%{customdata[0]}</b><br><br>" + "<br>".join([
     #     "ISO code: %{customdata[1]}", "Cluster: %{customdata[2]}"]) + "<extra></extra>")
-    return fig.to_html(full_html=False, default_height='100%', default_width='100%', config = {'responsive': True}
-)
+    return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
+                       )
 
 
 def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
@@ -298,8 +301,12 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
         ch_score = symbolicDA.index_G1d(dtw_matrix, labels)[0]
         # results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
         #                        index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
-        results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
-                                'Value': [sil_score, dunn_index, ch_score]})
+        if (sil_score < np.inf) & (dunn_index < np.inf) & (ch_score < np.inf):
+            results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
+                                    'Value': [sil_score, dunn_index, ch_score]})
+        else:
+            results = pd.DataFrame({'Results': ['Chosen parameters provides to unsatisfying results.']})
+
     except Exception as ex:
         print(ex)
         results = pd.DataFrame({'Results': ['Application can not display results for one cluster.']})
@@ -334,7 +341,7 @@ def plot_metrics(data: pd.DataFrame) -> None:
                                          name=alg, visible=False))
         n_of_countries = df_test_final.shape[0]
         visible = [False] * n_of_countries * i + [True] * n_of_countries + [False] * n_of_countries * (
-                    n_of_countries - i - 1)
+                n_of_countries - i - 1)
         buttons.append(dict(label=m,
                             method='update',
                             args=[{'visible': visible},
