@@ -5,7 +5,7 @@
 > Wybór parametrów (?)
 > Tooltip mapka - DONE
 > Tooltip Series - DONE (czy unified?)
-> Orginalne dane series
+> Orginalne dane series - DONE
 > tabela layout - DONE
 > Tytuł mapy - DONE
 > Obrazek ładowania strony - IN PROGRESS

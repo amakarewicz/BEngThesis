@@ -14,6 +14,17 @@ function Hide() {
         }
     }
 
+    var brs = document.getElementsByTagName('form')[0].getElementsByTagName('br');
+    for (var i = 0; i < brs.length; i++) {
+        brs[i].style.display = 'none'
+    }
+
+    // document.getElementsByTagName('form')[0].getElementsByTagName('br').length
+    // var brs = document.getElementsByTagName('br')
+    // for (var i = 0; i < brs.length; i++) {
+    //   brs[i].parentNode.removeChild(brs[i]);
+    // }
+
     if (selected.value === "kmeans") {
         document.getElementById('id_linkage').style.display = 'none';
         document.getElementById('id_eps').style.display = 'none';
@@ -24,6 +35,9 @@ function Hide() {
         GetLabel('id_eps').style.display = 'none';
         GetLabel('id_min_samples').style.display = 'none';
         GetLabel('id_n_clusters').style.display = '';
+
+
+
     } else if (selected.value === "hierarchical") {
         document.getElementById('id_linkage').style.display = '';
         document.getElementById('id_eps').style.display = 'none';

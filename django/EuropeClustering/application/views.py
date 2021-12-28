@@ -39,7 +39,7 @@ def homepage(request):
             cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False).\
                 replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
                 replace('<thead id="tbody">', '<tbody>')
-            series = plot_series(data)
+            series = plot_series(dataOriginal)
             if eval_clustering.shape[0] > 1:
                 context = {'figure': figure,
                            'table': table,

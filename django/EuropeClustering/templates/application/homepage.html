@@ -1,5 +1,6 @@
 {% extends "application/base.html" %}
 {% block content %}
+
     <div id="parameters">
         <h3>Customize report</h3>
         <form method="post" onsubmit=load_screen()>
@@ -8,15 +9,18 @@
             {{ form.variables.label_tag }}{{ form.variables }} {# DODAC PODZIAL NA GRUPY ??? #}
             <br/><br/>
             {{ form.algorithm.label_tag }}{{ form.algorithm }}
-            <p>Choose parameters:</p>
-            {{ form.n_clusters.label_tag }}{{ form.n_clusters }}
-            <br>
-            {{ form.linkage.label_tag }}{{ form.linkage }}
-            {{ form.eps.label_tag }}{{ form.eps }}
-{#            <p>Value: <span id="id_eps_value"></span></p>#}
-            <br/>
-            {{ form.min_samples.label_tag }}{{ form.min_samples }}
-            <br/>
+            <div id="choose_parameters">
+                <p>Choose parameters:</p>
+                {{ form.n_clusters.label_tag }}{{ form.n_clusters }}
+                </br>
+    {#            <script type="text/javascript">var brs = document.getElementsByTagName('form')[0].getElementsByTagName('br'); for (var i = 0; i < brs.length; i++) {brs[i].style.display = 'none'};</script>#}
+                {{ form.linkage.label_tag }}{{ form.linkage }}
+                {{ form.eps.label_tag }}{{ form.eps }}
+    {#            <p>Value: <span id="id_eps_value"></span></p>#}
+                <br/>
+                {{ form.min_samples.label_tag }}{{ form.min_samples }}
+                <br/><br/>
+            </div>
             <input type="submit" value="Perform clustering" onsubmit=load_screen()>
         </form>
     </div>
