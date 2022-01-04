@@ -42,8 +42,10 @@ class CustomizeReport(forms.Form):
                 'type': 'range',
                 'value': '3.1',
                 'min': '2',
-                'max': '11'
-                # 'id': 'slider'
+                'max': '11',
+                'list': 'steplist',
+                'width': '50%'
+
             }
         )
     )

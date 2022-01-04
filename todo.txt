@@ -1,7 +1,7 @@
 # Homepage #
 
-> Puste linie między parametrami
-> Poprawić eps
+> Puste linie między parametrami DONE
+> Poprawić eps DONE
 > Wybór parametrów (?)
 > Tooltip mapka - DONE
 > Tooltip Series - DONE (czy unified?)
@@ -10,7 +10,7 @@
 > Tytuł mapy - DONE
 > Obrazek ładowania strony - IN PROGRESS
 > Grafika na start
-> Wyniki Inf (zapytać) 
+> Wyniki Inf (zapytać) DONE
 > Druga tabela (podsumowanie klastrów) - (dodać formatowanie i kolorki (?))
 > Series Select/deselect (?)
 > Layout

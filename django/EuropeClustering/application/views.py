@@ -30,7 +30,7 @@ def homepage(request):
                                                  form.cleaned_data['linkage'])
                 #other_graph = plot_dendrogram(model, np.array(countries.countrycode))
             else:
-                model = dbscan_clustering(data, int(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
+                model = dbscan_clustering(data, float(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
             figure = plot_clustering(countries, model.labels_)
             eval_clustering = evaluate_clustering(data, model.labels_)
             table = eval_clustering.to_html(index=False).\

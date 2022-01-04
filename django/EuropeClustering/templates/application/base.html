@@ -39,7 +39,10 @@
 
                 brs[0].style.display = 'none'
                 brs[1].style.display = 'none'
-                brs[2].style.display = ''
+                brs[2].style.display = 'none'
+                brs[3].style.display = ''
+
+                document.getElementById('steplist').style.display = 'none';
             } else if (selected.value === "hierarchical") {
                 document.getElementById('id_linkage').style.display = '';
                 document.getElementById('id_eps').style.display = 'none';
@@ -54,6 +57,9 @@
                 brs[0].style.display = ''
                 brs[1].style.display = 'none'
                 brs[2].style.display = 'none'
+                brs[3].style.display = 'none'
+
+                document.getElementById('steplist').style.display = 'none';
             } else {
                 document.getElementById('id_linkage').style.display = 'none';
                 document.getElementById('id_eps').style.display = '';
@@ -68,6 +74,9 @@
                 brs[0].style.display = 'none'
                 brs[1].style.display = ''
                 brs[2].style.display = ''
+                brs[3].style.display = ''
+
+                document.getElementById('steplist').style.display = 'flex';
             }
         }
 

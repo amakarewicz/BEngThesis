@@ -305,7 +305,7 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
             results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
                                     'Value': [sil_score, dunn_index, ch_score]})
         else:
-            results = pd.DataFrame({'Results': ['Chosen parameters provides to unsatisfying results.']})
+            results = pd.DataFrame({'Results': ['Chosen parameters provide to unsatisfying results.']})
 
     except Exception as ex:
         print(ex)
