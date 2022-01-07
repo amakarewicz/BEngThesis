@@ -18,13 +18,13 @@
                     <h3>Data</h3>
                     <p>Data was collected from Penn World Table, World Bank Open Data and UNDP's Human Development Reports.  See the table below for more information about indicators available for analysis.</p>
                     <table id="variables">
-                        <thead>
+                        <thead style="display: block">
                             <tr>
                                 <th class='indexcol'>Index</th>
                                 <th class='desccol'>Description</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style="display: block">
                             {% for variable in variables %}
                             <tr>
                                 <td class='indexcol'>{{ variable.name }}</td>
