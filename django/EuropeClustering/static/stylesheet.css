@@ -44,7 +44,7 @@ button {padding: 5px 10px 5px 10px; margin-left: 5px;}
     vertical-align: middle;
 }
 h3 {color: cornflowerblue;}
-table {margin-left:auto; margin-right:auto; border-collapse: collapse}
+table {margin-left:auto; margin-right:auto; border-collapse: collapse;}
 th, td {
     border: 1px solid black;
     text-align: left; padding: 5px;
@@ -71,7 +71,6 @@ thead, tbody { display: block; }
 #canvas {
     width: 75%;
     background-color: white;
-    height: 80%;
     margin-left: 25%;
 }
 /*.graph {*/

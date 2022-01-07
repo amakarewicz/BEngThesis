@@ -7,6 +7,16 @@
 {#    <script src="{%  static 'script.js' %}"></script>#}
     <link rel="stylesheet" href="{%  static 'stylesheet.css' %}">
     <script type="text/javascript">
+        function ResizeTable() {
+            if (document.getElementById('variables')) {
+                var width1 = document.getElementById('variables').getElementsByTagName('td')[0].clientWidth
+                document.getElementById('variables').getElementsByTagName('th')[0].style.width = (width1 - 10 + 'px')
+                var width2 = document.getElementById('variables').getElementsByTagName('td')[1].clientWidth
+                document.getElementById('variables').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
+
+            }
+        }
+
         function GetLabel(id) {
             var labels = document.getElementsByTagName('label');
             for( var i = 0; i < labels.length; i++ ) {
@@ -16,90 +26,105 @@
         }
 
         function Hide() {
-            var algorithms = document.getElementsByName('algorithm')
-            for (var i = 0; i < algorithms.length; i++) {
-                if (algorithms[i].matches(':checked')) {
-                    var selected = algorithms[i]
+            if (document.getElementsByName('algorithm')) {
+
+                var algorithms = document.getElementsByName('algorithm')
+                for (var i = 0; i < algorithms.length; i++) {
+                    if (algorithms[i].matches(':checked')) {
+                        var selected = algorithms[i]
+                    }
                 }
-            }
 
-            var brs = document.getElementById('choose_parameters').getElementsByTagName('br');
-            {#for (var i = 0; i < brs.length; i++) {brs[i].style.display = 'none'}#}
+                var brs = document.getElementById('choose_parameters').getElementsByTagName('br');
+                {#for (var i = 0; i < brs.length; i++) {brs[i].style.display = 'none'}#}
 
-            if (selected.value === "kmeans") {
-                document.getElementById('id_linkage').style.display = 'none';
-                document.getElementById('id_eps').style.display = 'none';
-                document.getElementById('id_min_samples').style.display = 'none';
-                document.getElementById('id_n_clusters').style.display = '';
+                if (selected.value === "kmeans") {
+                    document.getElementById('id_linkage').style.display = 'none';
+                    document.getElementById('id_eps').style.display = 'none';
+                    document.getElementById('id_min_samples').style.display = 'none';
+                    document.getElementById('id_n_clusters').style.display = '';
 
-                GetLabel('id_linkage_0').style.display = 'none';
-                GetLabel('id_eps').style.display = 'none';
-                GetLabel('id_min_samples').style.display = 'none';
-                GetLabel('id_n_clusters').style.display = '';
+                    GetLabel('id_linkage_0').style.display = 'none';
+                    GetLabel('id_eps').style.display = 'none';
+                    GetLabel('id_min_samples').style.display = 'none';
+                    GetLabel('id_n_clusters').style.display = '';
 
-                brs[0].style.display = 'none'
-                brs[1].style.display = 'none'
-                brs[2].style.display = 'none'
-                brs[3].style.display = ''
+                    brs[0].style.display = 'none'
+                    brs[1].style.display = 'none'
+                    brs[2].style.display = 'none'
+                    brs[3].style.display = ''
 
-                document.getElementById('steplist').style.display = 'none';
-            } else if (selected.value === "hierarchical") {
-                document.getElementById('id_linkage').style.display = '';
-                document.getElementById('id_eps').style.display = 'none';
-                document.getElementById('id_min_samples').style.display = 'none';
-                document.getElementById('id_n_clusters').style.display = '';
+                    document.getElementById('steplist').style.display = 'none';
+                } else if (selected.value === "hierarchical") {
+                    document.getElementById('id_linkage').style.display = '';
+                    document.getElementById('id_eps').style.display = 'none';
+                    document.getElementById('id_min_samples').style.display = 'none';
+                    document.getElementById('id_n_clusters').style.display = '';
 
-                GetLabel('id_linkage_0').style.display = '';
-                GetLabel('id_eps').style.display = 'none';
-                GetLabel('id_min_samples').style.display = 'none';
-                GetLabel('id_n_clusters').style.display = '';
+                    GetLabel('id_linkage_0').style.display = '';
+                    GetLabel('id_eps').style.display = 'none';
+                    GetLabel('id_min_samples').style.display = 'none';
+                    GetLabel('id_n_clusters').style.display = '';
 
-                brs[0].style.display = ''
-                brs[1].style.display = 'none'
-                brs[2].style.display = 'none'
-                brs[3].style.display = 'none'
+                    brs[0].style.display = ''
+                    brs[1].style.display = 'none'
+                    brs[2].style.display = 'none'
+                    brs[3].style.display = 'none'
 
-                document.getElementById('steplist').style.display = 'none';
-            } else {
-                document.getElementById('id_linkage').style.display = 'none';
-                document.getElementById('id_eps').style.display = '';
-                document.getElementById('id_min_samples').style.display = '';
-                document.getElementById('id_n_clusters').style.display = 'none';
+                    document.getElementById('steplist').style.display = 'none';
+                } else {
+                    document.getElementById('id_linkage').style.display = 'none';
+                    document.getElementById('id_eps').style.display = '';
+                    document.getElementById('id_min_samples').style.display = '';
+                    document.getElementById('id_n_clusters').style.display = 'none';
 
-                GetLabel('id_linkage_0').style.display = 'none';
-                GetLabel('id_eps').style.display = '';
-                GetLabel('id_min_samples').style.display = '';
-                GetLabel('id_n_clusters').style.display = 'none';
+                    GetLabel('id_linkage_0').style.display = 'none';
+                    GetLabel('id_eps').style.display = '';
+                    GetLabel('id_min_samples').style.display = '';
+                    GetLabel('id_n_clusters').style.display = 'none';
 
-                brs[0].style.display = 'none'
-                brs[1].style.display = ''
-                brs[2].style.display = ''
-                brs[3].style.display = ''
+                    brs[0].style.display = 'none'
+                    brs[1].style.display = ''
+                    brs[2].style.display = ''
+                    brs[3].style.display = ''
 
-                document.getElementById('steplist').style.display = 'flex';
+                    document.getElementById('steplist').style.display = 'flex';
+                }
             }
         }
 
         window.onload = function() {
             // document.getElementsByClassName('dataframe')[0].thead.style.display = 'table-header-group';
-            document.getElementById('id_variables').setAttribute('max-height', '100px');
-            document.getElementById('id_variables').setAttribute('overflow-y', 'auto');
-            document.getElementById('id_algorithm').onchange = Hide;
-            Hide();
+            if (document.getElementById('id_algorithm')) {
+                document.getElementById('id_variables').setAttribute('max-height', '100px');
+                document.getElementById('id_variables').setAttribute('overflow-y', 'auto');
+                document.getElementById('id_algorithm').onchange = Hide;
+                Hide();
+            }
+            ResizeTable();
 
-            // document.ready(function() {
-            //     document.getElementById('id_variables').attr('style', 'height:100px;overflow:scroll;');
-            // });
+            {#const main_svg = document.getElementsByClassName('main-svg')#}
+            {#if (main_svg.length > 0) {#}
+            {#    for (var i = 0; i < main_svg.length; i++) {#}
+            {#        main_svg[i].style.height = '80%'}}#}
         };
 
         load_screen = function(){
-                // document.getElementById('canvas').append('<div id="loading" style="background-color: #ff0000">Loading...</div>')
-                document.getElementById('loading').style.display = 'block';
+            // document.getElementById('canvas').append('<div id="loading" style="background-color: #ff0000">Loading...</div>')
+            document.getElementById('loading').style.display = 'block';
 
-                const columns = document.getElementsByClassName('column2')
-                for (var i = 0; i < columns.length; i++) {
-                    columns[i].style.display = 'none';
-                }
+            const columns = document.getElementsByClassName('column2')
+            for (var i = 0; i < columns.length; i++) {
+                columns[i].style.display = 'none';
+            }
+
+        }
+
+        window.onresize = function() {
+            if (document.getElementById('series')) {
+                document.getElementById('series').style.width = '100%'
+            }
+            ResizeTable();
         }
 
     </script>

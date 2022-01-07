@@ -6,7 +6,7 @@
         <form method="post" onsubmit=load_screen()>
             {% csrf_token %}
 {#            {{ form.as_p }}#}
-            {{ form.variables.label_tag }}{{ form.variables }} {# DODAC PODZIAL NA GRUPY ??? #}
+            {{ form.variables.label_tag }}<br/>{{ form.variables }} {# DODAC PODZIAL NA GRUPY ??? #}
             <br/><br/>
             {{ form.algorithm.label_tag }}{{ form.algorithm }}
             <div id="choose_parameters">
@@ -46,7 +46,7 @@
 
     {% if figure or table or series or cluster_info%}
         <div class="column2">
-            <div id="table" >
+            <div id="table" style="margin-bottom: -5%;">
             <h2>Metrics</h2><br>
             {% if table %}
                 {{ table|safe }}
@@ -54,7 +54,7 @@
                 <p>Oops! Something went wrong.</p>
             {% endif %}
             </div>
-            <div id="series" class="graph" style="width: 50%">
+            <div id="series" class="graph" style="width: 50%; margin-bottom: 100px">
                 {% if series %}
                     {{ series|safe }}
 {#                {% else %}#}
@@ -73,8 +73,7 @@
     {#            <div id="dendrogram" class="graph">#}
     {#                <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">#}
     {#            </div>#}
-
-            <div id="cluster_info" style="float:right">
+            <div id="cluster_info" style="float:right; margin-right: 5%;">
                     {% if cluster_info %}
                         {{ cluster_info|safe }}
 {#                    {% else %}#}
