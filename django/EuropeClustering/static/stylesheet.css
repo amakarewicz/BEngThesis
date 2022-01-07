@@ -57,6 +57,12 @@ thead, tbody { display: block; }
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+/*#models tbody {*/
+/*    height: 100px;*/
+/*    overflow-y: auto;*/
+/*    overflow-x: hidden;*/
+/*}*/
 /*!*Something wrong with thead*!*/
 /*thead.th.indexcol, tbody.td.indexcol {width: 100px}*/
 /*thead.th.desccol, tbody.td.desccol {width: 400px}*/

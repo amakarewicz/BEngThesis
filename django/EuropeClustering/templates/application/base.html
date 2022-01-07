@@ -15,6 +15,13 @@
                 document.getElementById('variables').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
 
             }
+            if (document.getElementById('models')) {
+                var width1 = document.getElementById('models').getElementsByTagName('td')[0].clientWidth
+                document.getElementById('models').getElementsByTagName('th')[0].style.width = (width1 - 10 + 'px')
+                var width2 = document.getElementById('models').getElementsByTagName('td')[1].clientWidth
+                document.getElementById('models').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
+
+            }
         }
 
         function GetLabel(id) {
