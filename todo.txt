@@ -1,41 +1,13 @@
-# Homepage #
+1. Mapa home page -> nie skaluje sie -> sprobować plotly.js <Agata>
+2. Mapa dbscan -> nie działa -> ipywidgets (na razie notebook) <Agata> (+ tooltip - OUTLIERY)
+3. Kolorki do mapek (przypisane do klastrów/państw) + tabela <Jacek>
+4. Znalezienie czegoś ciekawego do pokazania (klasteryzacja na przedziale 10 lat, euro itp)
+5. Transformacje -> ogarnąć notebook + napisać do Jastrzębskiej <Agata>
+6. Dopieszczanie (przyciski na homepage, submit, scrollbar na read about itp) (number of clusters - oddzielic widget) (tytuł canvas/tytuły wykresów)
+7. Kolorystyka  (background, przyciski, panel z wyborem itp) (+ zmiana na grafice jesli zmiana tła)
+8. Grafika na start
+----------------------------
+ Eps - chmurka
 
-> Puste linie między parametrami DONE
-> Poprawić eps DONE
-> Wybór parametrów (?)
-> Tooltip mapka - DONE
-> Tooltip Series - DONE (czy unified?)
-> Orginalne dane series - DONE
-> tabela layout - DONE
-> Tytuł mapy - DONE
-> Obrazek ładowania strony - IN PROGRESS
-> Grafika na start
-> Wyniki Inf (zapytać) DONE
-> Druga tabela (podsumowanie klastrów) - (dodać formatowanie i kolorki (?))
-> Series Select/deselect (?)
-> Layout
-
-# Readabout #
-
-> Druga tabela
-> tabele layout 
-
-# Report #
-
-> Mapka slidery
-> Mapka kolory
-> Mapka tooltip (oznaczyc outliery)
-> Coś
-
-# Ogólne #
-
-> Segmentacja
-> Strefa euro
-> Testy (?)
-
-
-######################################################
-TO DO
-######################################################
-> Segmentacja
-> Strefa Euro
+-------------------------------------------------------
+(https://coolors.co/8d6b94-b185a7-c3a29e-e8dbc5-fff4e9)
