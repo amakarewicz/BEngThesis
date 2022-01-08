@@ -31,7 +31,11 @@ def homepage(request):
                 #other_graph = plot_dendrogram(model, np.array(countries.countrycode))
             else:
                 model = dbscan_clustering(data, float(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
-            figure = plot_clustering(countries, model.labels_)
+
+            colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c']
+            colors = colors[:(max(model.labels_) + 1)]
+
+            figure = plot_clustering(countries, model.labels_, colors)
             eval_clustering = evaluate_clustering(data, model.labels_)
             table = eval_clustering.to_html(index=False).\
                 replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
@@ -65,10 +69,8 @@ def homepage(request):
 
 def readabout(request):
     variables = Variable.objects.all()
-    algorithms = Algorithm.objects.all()
 
-    context = {'variables': variables,
-               'algorithms': algorithms}
+    context = {'variables': variables}
 
     return render(request, 'application/readabout.html', context)
 

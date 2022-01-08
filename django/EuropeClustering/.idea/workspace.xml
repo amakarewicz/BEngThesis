@@ -20,16 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6d74f9c-7815-4905-94cd-2fb2dd4082b5" name="Default Changelist" comment="django testing">
-      <change beforePath="$PROJECT_DIR$/../../Data_preprocessing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Data_preprocessing.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/EuropeClustering.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EuropeClustering.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c60122a-d0d8-4d96-b0d8-bcccb4002007.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2c60122a-d0d8-4d96-b0d8-bcccb4002007.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EuropeClustering/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/EuropeClustering/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithms.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../documentation/Documentation_4.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../documentation/Documentation_4.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../metrics_plot.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../metrics_plot.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loading.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/loading_gif.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/application/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/application/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/homepage.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +57,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="JupyterTrust" id="995a4aa4-9931-465c-b5bf-6ab2e49a8d95" />
+  <component name="JupyterTrust" id="b067bb74-5913-4871-b8ef-c738bc869944" />
   <component name="ProjectId" id="21QsCdlxOzS2dkUEslARQvoeDfn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -70,15 +74,15 @@
     <property name="sql.rename.search.for.storage.occurrences" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering" />
       <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering\EuropeClustering" />
       <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering\application" />
       <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering\static" />
       <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering\templates\application" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\agama\Documents\BEngThesis\django\EuropeClustering" />
     </key>
   </component>
   <component name="RunManager">
@@ -90,7 +94,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="EuropeClustering.settings" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\agama\Desktop\thesis_env\Scripts\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\jwisn\OneDrive\Dokumenty\bengThesisJacek\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -156,6 +160,7 @@
       <workItem from="1641598896100" duration="246000" />
       <workItem from="1641599182954" duration="970000" />
       <workItem from="1641636685950" duration="3218000" />
+      <workItem from="1641642554807" duration="19072000" />
     </task>
     <servers />
   </component>
@@ -175,11 +180,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="36" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1641600164271">
+    <state x="36" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1641642583327">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="191" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1638136638866" />
-    <state x="36" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1641600164271" />
+    <state x="36" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1641642583327" />
     <state x="399" y="143" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1638014173467">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -197,26 +202,26 @@
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1637967509912" />
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1641600141843" />
-    <state width="1237" height="160" key="GridCell.Tab.0.bottom" timestamp="1641642130316">
+    <state width="1237" height="131" key="GridCell.Tab.0.bottom" timestamp="1641673392065">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1638378082725" />
-    <state width="1237" height="160" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1641642130316" />
-    <state width="1237" height="160" key="GridCell.Tab.0.center" timestamp="1641642130308">
+    <state width="1237" height="131" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1641673392065" />
+    <state width="1237" height="131" key="GridCell.Tab.0.center" timestamp="1641673392065">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1638378082725" />
-    <state width="1237" height="160" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1641642130308" />
-    <state width="1237" height="160" key="GridCell.Tab.0.left" timestamp="1641642130308">
+    <state width="1237" height="131" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1641673392065" />
+    <state width="1237" height="131" key="GridCell.Tab.0.left" timestamp="1641673392065">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1638378082725" />
-    <state width="1237" height="160" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1641642130308" />
-    <state width="1237" height="160" key="GridCell.Tab.0.right" timestamp="1641642130316">
+    <state width="1237" height="131" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1641673392065" />
+    <state width="1237" height="131" key="GridCell.Tab.0.right" timestamp="1641673392065">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1638378082725" />
-    <state width="1237" height="160" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1641642130316" />
+    <state width="1237" height="131" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1641673392065" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1638144360693">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -249,10 +254,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog/0.0.1280.680@0.0.1280.680" timestamp="1639083498833" />
-    <state x="438" y="161" width="404" height="350" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1638211348876">
+    <state x="438" y="161" width="404" height="346" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1641645873467">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="438" y="161" width="404" height="350" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1280.680@0.0.1280.680" timestamp="1638211348876" />
+    <state x="438" y="161" width="404" height="346" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog/0.0.1280.680@0.0.1280.680" timestamp="1641645873467" />
+    <state x="506" y="157" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1641645825344">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="506" y="157" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1641645825344" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1639314446175">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

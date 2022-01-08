@@ -43,8 +43,7 @@
                 }
 
                 var brs = document.getElementById('choose_parameters').getElementsByTagName('br');
-                {#for (var i = 0; i < brs.length; i++) {brs[i].style.display = 'none'}#}
-
+                var ps = document.getElementById('choose_parameters').getElementsByTagName('p');
                 if (selected.value === "kmeans") {
                     document.getElementById('id_linkage').style.display = 'none';
                     document.getElementById('id_eps').style.display = 'none';
@@ -58,10 +57,11 @@
 
                     brs[0].style.display = 'none'
                     brs[1].style.display = 'none'
-                    brs[2].style.display = 'none'
-                    brs[3].style.display = ''
 
                     document.getElementById('steplist').style.display = 'none';
+
+                    ps[1].style.display = ''
+                    ps[2].style.display = 'none'
                 } else if (selected.value === "hierarchical") {
                     document.getElementById('id_linkage').style.display = '';
                     document.getElementById('id_eps').style.display = 'none';
@@ -73,12 +73,13 @@
                     GetLabel('id_min_samples').style.display = 'none';
                     GetLabel('id_n_clusters').style.display = '';
 
-                    brs[0].style.display = ''
+                    brs[0].style.display = 'none'
                     brs[1].style.display = 'none'
-                    brs[2].style.display = 'none'
-                    brs[3].style.display = 'none'
 
                     document.getElementById('steplist').style.display = 'none';
+
+                    ps[1].style.display = ''
+                    ps[2].style.display = 'none'
                 } else {
                     document.getElementById('id_linkage').style.display = 'none';
                     document.getElementById('id_eps').style.display = '';
@@ -90,12 +91,13 @@
                     GetLabel('id_min_samples').style.display = '';
                     GetLabel('id_n_clusters').style.display = 'none';
 
-                    brs[0].style.display = 'none'
+                    brs[0].style.display = ''
                     brs[1].style.display = ''
-                    brs[2].style.display = ''
-                    brs[3].style.display = ''
 
                     document.getElementById('steplist').style.display = 'flex';
+
+                    ps[1].style.display = 'none'
+                    ps[2].style.display = ''
                 }
             }
         }
@@ -108,6 +110,16 @@
                 document.getElementById('id_algorithm').onchange = Hide;
                 Hide();
             }
+
+            if (document.getElementById('cluster_info')) {
+                var body = document.getElementById('cluster_info').getElementsByTagName('tbody')[0]
+                var colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c']
+                colors = colors.slice(0, body.children.length - 1)
+                for (var i = 1; i < body.children.length; i++) {
+                    body.children[i].style.backgroundColor = colors[i-1]
+                }
+            }
+
             ResizeTable();
 
             {#const main_svg = document.getElementsByClassName('main-svg')#}
@@ -117,7 +129,6 @@
         };
 
         load_screen = function(){
-            // document.getElementById('canvas').append('<div id="loading" style="background-color: #ff0000">Loading...</div>')
             document.getElementById('loading').style.display = 'block';
 
             const columns = document.getElementsByClassName('column2')

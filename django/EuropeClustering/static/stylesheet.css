@@ -107,10 +107,13 @@ thead, tbody { display: block; }
     /*display: table-header-group;*/
 }
 
-div#loading {
-    background-color: #ff0000;
-    display: none;
-}
+/*div#loading {*/
+/*    background-color: antiquewhite;*/
+/*    display: none;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*    width: 50%;*/
+/*}*/
 
 /*table {*/
 /*  width: 100%;*/

@@ -148,7 +148,7 @@ def dbscan_clustering(data: pd.DataFrame, eps: float, min_samples: int) -> DBSCA
     return model
 
 
-def plot_clustering(countries: pd.DataFrame, labels: np.array) -> str:
+def plot_clustering(countries: pd.DataFrame, labels: np.array, colors: np.array) -> str:
     """
     Plot cartogram presenting clustering results for given countries.
 
@@ -160,8 +160,12 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array) -> str:
     try:
         labels = labels.astype(str)
         countries["cluster"] = pd.Series(labels)
+
+        colors = dict(zip(np.sort(np.unique(labels)), colors))
+
+        # color_discrete_sequence = px.colors.qualitative.Pastel
         fig = px.choropleth(countries, locations='countrycode', color="cluster",
-                            projection='conic conformal', color_discrete_sequence=px.colors.qualitative.Pastel,
+                            projection='conic conformal', color_discrete_map=colors,
                             hover_name="country", custom_data=["country", 'countrycode', 'cluster'],
                             title='Clustering results')
         fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
