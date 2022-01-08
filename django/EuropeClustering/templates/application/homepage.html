@@ -79,6 +79,35 @@
         </div>
     {% endif %}
     </div>
-
-
+{#	<script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>#}
+{#    <script>#}
+{#        div = document.getElementById("map");#}
+{##}
+{#        var data = [{#}
+{#              type: 'choropleth',#}
+{#              locationmode: 'country names',#}
+{#              locations: {{ countries }},#}
+{#              z: {{ labels }},#}
+{#              autocolorscale: true#}
+{#        }];#}
+{##}
+{#        var layout = {#}
+{#            title: 'Clustering results',#}
+{#            geo: {#}
+{#                projection: {#}
+{#                    type: 'conic conformal'#}
+{#                },#}
+{#                lataxis: {#}
+{#                    range:[35,75]#}
+{#                },#}
+{#                lonaxis: {#}
+{#                    range:[-15, 45]#}
+{#                }#}
+{#            }#}
+{#          };#}
+{#        var config = {responsive: true};#}
+{##}
+{#        Plotly.newPlot(div, data, layout, config);#}
+{#      });#}
+{#    </script>#}
 {% endblock %}
