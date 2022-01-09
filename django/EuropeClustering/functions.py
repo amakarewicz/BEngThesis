@@ -170,10 +170,10 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array, colors: np.array)
                             title='Clustering results')
         fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
         fig.update_layout(showlegend=False, margin=dict(l=20, r=20, t=40, b=20), paper_bgcolor='rgba(0,0,0,0)',
-                          hoverlabel=dict(bgcolor="white", font_size=14))
+                          hoverlabel=dict(bgcolor="white", font_size=14), title_x=0, title_xref='paper')
         fig.update_traces(hovertemplate="<b>%{customdata[0]}</b><br><br>" + "<br>".join([
             "ISO code: %{customdata[1]}", "Cluster: %{customdata[2]}"]) + "<extra></extra>")
-        return fig.to_html(full_html=False, default_height=400, default_width=400, config={'responsive': True})
+        return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True})
 
     except Exception as ex:
         print(ex)
@@ -355,7 +355,8 @@ def plot_metrics(data: pd.DataFrame) -> None:
         # , showactive=True)                    ]
     ]))
     fig.update_layout(title='Metrics', title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
-    return fig.to_html(full_html=False, default_height=400, default_width=500)
+    return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
+                       )
 
 
 def plot_dbscan(data):
@@ -399,7 +400,7 @@ def plot_dbscan(data):
         for min_samples in min_samples_grid:
             step = dict(method='restyle',
                         args=['visible', [False] * len(plot_data)],
-                        label='{} / {}'.format(eps, min_samples))
+                        label='{} | {}'.format(eps, min_samples))
             step['args'][1][i] = True
             steps.append(step)
             i += 1
@@ -414,7 +415,8 @@ def plot_dbscan(data):
     fig = go.Figure(dict(data=plot_data, layout=layout))
     fig.update_traces(showlegend=False, selector=dict(type='choropleth'))
     fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
-    return fig.to_html(full_html=False, default_height=400, default_width=500)
+    return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
+                       )
 
 
 def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
@@ -430,6 +432,8 @@ def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
         pd.options.display.float_format = '{:.2f}'.format
         data_2019 = data[data.year == 2019]
         data_2019.loc[:, 'Cluster'] = labels
-        return data_2019.groupby('Cluster').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']].reset_index()
+        data = data_2019.groupby('Cluster').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']].reset_index()
+        data.columns = ['Cluster', 'Population ()', 'GDP per capita', 'Migration ()', 'HDI']
+        return data
     except Exception as ex:
         print(ex)

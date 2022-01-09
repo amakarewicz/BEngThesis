@@ -14,7 +14,7 @@
                 <p style="margin-bottom: -2px">{{ form.n_clusters.label_tag }} &ensp; {{ form.n_clusters }}</p>
                 {{ form.linkage.label_tag }}{{ form.linkage }}
                 {{ form.eps.label_tag }}<br>{{ form.eps }}
-                <datalist id="steplist" style="display: flex; justify-content: space-between; width: 50%">
+                <datalist id="steplist" style="display: flex; justify-content: space-between; width: 50%;">
                     <option value="2" label="2"></option>
                     <option value="3" label="3"></option>
                     <option value="4" label="4"></option>
@@ -30,20 +30,22 @@
                 <p style="margin-top: -3px; margin-bottom: -3px">{{ form.min_samples.label_tag }} &ensp; {{ form.min_samples }}</p>
                 <br/>
             </div>
-            <input type="submit" value="Perform clustering" onsubmit=load_screen()>
+            <input style="background-color: #ffe866; border-radius: 10px; border: 2px solid goldenrod; width: 100%; padding: 5px 10px 5px 10px;" type="submit" value="Perform clustering" onsubmit=load_screen()>
         </form>
     </div>
 
     <div id="canvas" style="display:flex">
 
     <div id="loading" style="display: none; background-color: antiquewhite; width: 100%;">
-        <img alt="Loading" src="/static/loading_gif.gif" style="display: block; width: 20%; margin-left: auto; margin-right: auto; margin-top: 10%"/>
+        <img alt="Loading" src="/static/loading_gif.gif" style="display: block; width: 10%; margin-left: auto; margin-right: auto; margin-top: 10%"/>
     </div>
 
     {% if figure or table or series or cluster_info%}
         <div class="column2">
             <div id="table" style="margin-bottom: -5%;">
-            <h2>Metrics</h2><br>
+            <header style="font-family: 'Open Sans', verdana, arial, sans-serif; color: #444; margin-left: 40px">
+                Clustering evaluation
+            </header><br><!-- dodać jako caption do table!!! z align = left -->
             {% if table %}
                 {{ table|safe }}
             {% else %}
@@ -59,7 +61,7 @@
             </div>
         </div>
         <div class="column2">
-            <div id="map" class="graph" style="float: right">
+            <div id="map" class="graph" style="height:70%; width:100%">
                     {% if figure %}
                         {{ figure|safe }}
 {#                    {% else %}#}
@@ -69,7 +71,10 @@
     {#            <div id="dendrogram" class="graph">#}
     {#                <img src="data:image/png;base64,{{ other_graph }}" alt="" height="250" ,width="250">#}
     {#            </div>#}
-            <div id="cluster_info" style="float: right; margin-right: 5%">
+            <div id="cluster_info">
+            <header style="font-family: 'Open Sans', verdana, arial, sans-serif; color: #444;">
+                Average values of selected indicators within defined clusters (2019)
+            </header><br> <!-- dodać jako caption do table!!! z align = left -->
                     {% if cluster_info %}
                         {{ cluster_info|safe }}
 {#                    {% else %}#}
@@ -79,35 +84,4 @@
         </div>
     {% endif %}
     </div>
-{#	<script src='https://cdn.plot.ly/plotly-2.8.3.min.js'></script>#}
-{#    <script>#}
-{#        div = document.getElementById("map");#}
-{##}
-{#        var data = [{#}
-{#              type: 'choropleth',#}
-{#              locationmode: 'country names',#}
-{#              locations: {{ countries }},#}
-{#              z: {{ labels }},#}
-{#              autocolorscale: true#}
-{#        }];#}
-{##}
-{#        var layout = {#}
-{#            title: 'Clustering results',#}
-{#            geo: {#}
-{#                projection: {#}
-{#                    type: 'conic conformal'#}
-{#                },#}
-{#                lataxis: {#}
-{#                    range:[35,75]#}
-{#                },#}
-{#                lonaxis: {#}
-{#                    range:[-15, 45]#}
-{#                }#}
-{#            }#}
-{#          };#}
-{#        var config = {responsive: true};#}
-{##}
-{#        Plotly.newPlot(div, data, layout, config);#}
-{#      });#}
-{#    </script>#}
 {% endblock %}

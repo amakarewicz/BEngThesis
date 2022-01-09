@@ -49,9 +49,9 @@ def homepage(request):
                            'table': table,
                            'form': form,
                            'series': series,
-                           'cluster_info': cluster_info}
-                        #    'countries': countries['countrycode'].astype(str),
-                        #    'labels': model.labels_}
+                           'cluster_info': cluster_info,
+                           'countries': countries['countrycode'].astype(str),
+                           'labels': model.labels_}
             else:
                 context = {
                     'table': table,

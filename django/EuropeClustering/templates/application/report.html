@@ -8,11 +8,13 @@
         <p>In this application, the user can perform clustering of European countries using chosen algorithm and parameters. The following report presents the behaviour of the algorithms based on chosen parameters.</p>
         <div id="report_charts" style="display:flex">
             <div id="metrics" class="column">
+            <div id="metrics_chart" style="width: 100%">
                 {% if metrics %}
                     {{ metrics|safe }}
                 {% else %}
                     <p>Oops! Something went wrong.</p>
                 {% endif %}
+            </div>
                 <p>In the figure above, there are presented KMeans and Hierarchical algorithms’ results for a different number of chosen clusters measured by one of the three available evaluation metrics.</p>
                 <ul>
                     <li>KMeans results in most cases are lower than Hierarchical results. It has the worst results for the Silhouette score and Dunn index. The only measure that favours KMeans is Calinski-Harabasz Index which means the KMeans algorithm groups similar countries in one cluster but does not necessarily separate clusters in a proper way. The best number of clusters for KMeans is 3 or 4.</li>
