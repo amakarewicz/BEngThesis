@@ -112,7 +112,7 @@ thead, tbody { display: block; }
     /*position: absolute;*/
     /*right: 0;*/
 }
-#table {height: 40%}
+/*#table table {margin-left: 0}*/
 /*#dendrogram {*/
 /*    float: right;*/
 /*}*/

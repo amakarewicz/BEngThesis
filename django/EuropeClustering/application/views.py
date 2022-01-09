@@ -32,17 +32,18 @@ def homepage(request):
             else:
                 model = dbscan_clustering(data, float(form.cleaned_data['eps']), int(form.cleaned_data['min_samples']))
 
-            colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c']
-            colors = colors[:(max(model.labels_) + 1)]
+            colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c', '#787D6B', '#848978', '#8F9484', '#999E8F']
+            colors = colors[:(len(np.unique(model.labels_)) + 1)]
 
             figure = plot_clustering(countries, model.labels_, colors)
             eval_clustering = evaluate_clustering(data, model.labels_)
             table = eval_clustering.to_html(index=False).\
                 replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
                 replace('<thead id="tbody">', '<tbody>')
-            cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False).\
-                replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
-                replace('<thead id="tbody">', '<tbody>')
+            cluster_info = print_cluster_info(dataOriginal, model.labels_).to_html(index=False)
+                # .\
+                # replace('<thead>', '<thead id="tbody">').replace("</thead>", "").replace("<tbody>", "").\
+                # replace('<thead id="tbody">', '<tbody>')
             series = plot_series(dataOriginal)
             if eval_clustering.shape[0] > 1:
                 context = {'figure': figure,

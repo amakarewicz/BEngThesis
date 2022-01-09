@@ -22,6 +22,14 @@
                 document.getElementById('models').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
 
             }
+
+            if (document.getElementById('cluster_info')) {
+                for (var i = 0; i < document.getElementById('cluster_info').getElementsByTagName('th').length; i++) {
+                    var width = document.getElementById('cluster_info').getElementsByTagName('th')[i].clientWidth
+                    document.getElementById('cluster_info').getElementsByTagName('td')[i].style.width = (width - 9.7 + 'px')
+                }
+
+            }
         }
 
         function GetLabel(id) {
@@ -113,19 +121,41 @@
 
             if (document.getElementById('cluster_info')) {
                 var body = document.getElementById('cluster_info').getElementsByTagName('tbody')[0]
-                var colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c']
-                colors = colors.slice(0, body.children.length - 1)
-                for (var i = 1; i < body.children.length; i++) {
-                    body.children[i].style.backgroundColor = colors[i-1]
+                var colors = ['#ffe8d6', '#ddbea9', '#cb997e', '#b7b7a4', '#a5a58d', '#6b705c', '#787D6B', '#848978', '#8F9484', '#999E8F']
+                colors = colors.slice(0, body.children.length)
+                for (var i = 0; i < body.children.length; i++) {
+                    body.children[i].style.backgroundColor = colors[i]
                 }
+
+                {#body.style.height = document.getElementById('canvas').style.height * 0.15 + 'px'#}
+                body.style.cssText = "display: block; height: 100px; overflow-y: auto; overflow-x: hidden;"
+
+                var caption_cluster = document.createElement('caption')
+                caption_cluster.textContent = 'Average values of selected indicators within defined clusters (2019)'
+                caption_cluster.style.cssText = "font-family: 'Open Sans', verdana, arial, sans-serif; color: #444;"
+                caption_cluster.style.textAlign = 'left'
+                caption_cluster.style.marginBottom = '5%'
+                document.getElementById('cluster_info').getElementsByTagName('table')[0].appendChild(caption_cluster)
+                {#style="font-family: 'Open Sans', verdana, arial, sans-serif; color: #444;"#}
+
+
+                var width = document.getElementById('cluster_info').getElementsByTagName('th')[4].clientWidth
+                document.getElementById('cluster_info').getElementsByTagName('th')[4].style.width = (width + 2 + 'px')
             }
+            {##}
+            {#if (document.getElementById('table')) {#}
+            {#    var caption_eval = document.createElement('caption')#}
+            {#    caption_eval.textContent = 'Clustering evaluation'#}
+            {#    caption_eval.style.cssText = "font-family: 'Open Sans', verdana, arial, sans-serif; color: #444;"#}
+            {#    caption_eval.style.textAlign = 'left'#}
+            {#    caption_eval.style.marginBottom = '15%'#}
+            {#    caption_eval.style.marginTop = '5%'#}
+            {#    document.getElementById('table').getElementsByTagName('table')[0].appendChild(caption_eval)}#}
+
+
 
             ResizeTable();
 
-            {#const main_svg = document.getElementsByClassName('main-svg')#}
-            {#if (main_svg.length > 0) {#}
-            {#    for (var i = 0; i < main_svg.length; i++) {#}
-            {#        main_svg[i].style.height = '80%'}}#}
         };
 
         load_screen = function(){
@@ -136,6 +166,7 @@
                 columns[i].style.display = 'none';
             }
 
+            document.getElementById('starting_img').style.display = 'none'
         }
 
         window.onresize = function() {
