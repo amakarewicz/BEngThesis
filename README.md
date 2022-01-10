@@ -16,5 +16,4 @@ For over 40 years, scientific works have presented various divisions of European
 
 ### How to run application
 
-* If you are using application for the first time, run install_requirements.sh file passing python path and R path: install_requirements.sh "{python_path}" "{R_path}"
-* Run start_app.sh passing python path: start_app.sh "{python_path}"
+See documentation part 4.
