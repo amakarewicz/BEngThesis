@@ -127,8 +127,8 @@
                     body.children[i].style.backgroundColor = colors[i]
                 }
 
+                body.style.cssText = "display: block; height: 200px; overflow-y: auto; overflow-x: hidden;"
                 {#body.style.height = document.getElementById('canvas').style.height * 0.15 + 'px'#}
-                body.style.cssText = "display: block; height: 100px; overflow-y: auto; overflow-x: hidden;"
 
                 var caption_cluster = document.createElement('caption')
                 caption_cluster.textContent = 'Average values of selected indicators within defined clusters (2019)'
@@ -153,7 +153,6 @@
             {#    document.getElementById('table').getElementsByTagName('table')[0].appendChild(caption_eval)}#}
 
 
-
             ResizeTable();
 
         };
@@ -173,6 +172,10 @@
             if (document.getElementById('series')) {
                 document.getElementById('series').style.width = '100%'
             }
+            if (document.getElementById('metrics_chart')) {
+                document.getElementById('metrics_chart').style.width = '100%'
+            }
+
             ResizeTable();
         }
 

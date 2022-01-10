@@ -170,7 +170,7 @@ def plot_clustering(countries: pd.DataFrame, labels: np.array, colors: np.array)
                             title='Clustering results')
         fig.update_geos(lataxis_range=[35, 75], lonaxis_range=[-15, 45])  # customized to show Europe only
         fig.update_layout(showlegend=False, margin=dict(l=20, r=20, t=40, b=20), paper_bgcolor='rgba(0,0,0,0)',
-                          hoverlabel=dict(bgcolor="white", font_size=14), title_x=0, title_xref='paper')
+                          hoverlabel=dict(bgcolor="white", font_size=14), title_x=0.18, title_xref='paper')
         fig.update_traces(hovertemplate="<b>%{customdata[0]}</b><br><br>" + "<br>".join([
             "ISO code: %{customdata[1]}", "Cluster: %{customdata[2]}"]) + "<extra></extra>")
         return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True})
@@ -391,7 +391,9 @@ def plot_dbscan(data):
             model.fit(dtw_matrix)
             plot_data.append(dict(type='choropleth',
                                   locations=countries['countrycode'].astype(str),
-                                  z=model.labels_, showscale=False))
+                                  z=model.labels_.astype(str),
+                                  colorscale=[[0, '#718355'], [0.33, '#ffe8d6'], [0.6, '#ddbea9'], [1, '#cb997e']],
+                                  showscale=False))
     # (3,2), (3,3) ... (3.1, 2), (3.1, 3) 
 
     steps = []
@@ -400,21 +402,25 @@ def plot_dbscan(data):
         for min_samples in min_samples_grid:
             step = dict(method='restyle',
                         args=['visible', [False] * len(plot_data)],
-                        label='{} | {}'.format(eps, min_samples))
+                        label='[{}, {}]'.format(eps, min_samples))
             step['args'][1][i] = True
             steps.append(step)
             i += 1
 
     sliders = [dict(active=0,
-                    pad={"t": 1},
                     steps=steps,
-                    currentvalue={'prefix': 'Eps - ', 'suffix': ' - min samples'})]
+                    currentvalue={'prefix': '[Eps, min samples] -> '},
+                    len=0.8,
+                    xanchor='center',
+                    pad={"l":20,"r":20, "t":1},
+                    ticklen=10,
+                    x=0.5)]
 
     layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range': [35, 75]},
                            lonaxis={'range': [-15, 45]}), sliders=sliders, title='DBSCAN')
     fig = go.Figure(dict(data=plot_data, layout=layout))
     fig.update_traces(showlegend=False, selector=dict(type='choropleth'))
-    fig.update_layout(margin=dict(l=20, r=20, t=50, b=20))
+    fig.update_layout(margin=dict(l=10, r=10, t=50, b=20))
     return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
                        )
 
