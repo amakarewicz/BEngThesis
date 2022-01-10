@@ -447,7 +447,7 @@ def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
         data_2019 = data[data.year == 2019]
         data_2019.loc[:, 'Cluster'] = labels
         data = data_2019.groupby('Cluster').agg('mean')[['pop', 'rgdpna_per_cap', 'net_migration', 'hdi']].reset_index()
-        data.columns = ['Cluster', 'Population ()', 'GDP per capita', 'Migration ()', 'HDI']
+        data.columns = ['Cluster', 'Population (mln)', 'GDP per capita', 'Migration', 'HDI']
         return data
     except Exception as ex:
         print(ex)
