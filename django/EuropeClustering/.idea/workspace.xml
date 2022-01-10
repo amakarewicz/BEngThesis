@@ -20,15 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6d74f9c-7815-4905-94cd-2fb2dd4082b5" name="Default Changelist" comment="django testing">
+      <change afterPath="$PROJECT_DIR$/../../dbscan_plot.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/migrations/0009_databoxcox.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../documentation/Documentation_4.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../metrics_plot.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../plots/metrics_plot.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../plots/temp-plot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2c60122a-d0d8-4d96-b0d8-bcccb4002007.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2c60122a-d0d8-4d96-b0d8-bcccb4002007.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/background_pic.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/background_pic.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/application/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/application/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/homepage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/application/readabout.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/readabout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/application/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/application/report.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../temp-plot.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../temp-plot.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +68,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../data/data_box.csv" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="sql.rename.search.for.storage.occurrences" value="true" />
@@ -159,7 +164,9 @@
       <workItem from="1641673653531" duration="2948000" />
       <workItem from="1641684003739" duration="31910000" />
       <workItem from="1641755418140" duration="12887000" />
-      <workItem from="1641773598699" duration="7889000" />
+      <workItem from="1641773598699" duration="11442000" />
+      <workItem from="1641791849212" duration="334000" />
+      <workItem from="1641792203286" duration="4638000" />
     </task>
     <servers />
   </component>
@@ -196,35 +203,35 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="509" y="96" key="EnvironmentVariablesDialog/0.0.1280.680@0.0.1280.680" timestamp="1638014411437" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1641600141843">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1641787241314">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1637967509912" />
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1641600141843" />
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1641783657213">
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1641787241314" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1641797715409">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641783657213" />
+    <state width="1237" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641797715409" />
     <state width="1877" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1641732082080" />
-    <state width="1237" height="131" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1641770046008" />
-    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1641783657212">
+    <state width="618" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1641792186374" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center" timestamp="1641797715409">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641783657212" />
+    <state width="1237" height="162" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641797715409" />
     <state width="1877" height="162" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1641732082080" />
-    <state width="1237" height="131" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1641770046007" />
-    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1641783657211">
+    <state width="618" height="162" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1641792186374" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left" timestamp="1641797715408">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641783657211" />
+    <state width="1237" height="162" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641797715408" />
     <state width="1877" height="162" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1641732082080" />
-    <state width="1237" height="131" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1641770046007" />
-    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1641783657212">
+    <state width="618" height="162" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1641792186374" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right" timestamp="1641797715409">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641783657212" />
+    <state width="1237" height="162" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1641797715409" />
     <state width="1877" height="162" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1641732082080" />
-    <state width="1237" height="131" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1641770046008" />
+    <state width="618" height="162" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1641792186374" />
     <state width="1237" height="204" key="GridCell.Tab.1.bottom" timestamp="1638144360693">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -257,10 +264,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="475" y="228" width="330" height="264" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1280.680@0.0.1280.680" timestamp="1641641365912" />
-    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog" timestamp="1639083498833">
+    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog" timestamp="1641787288290">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog/0.0.1280.680@0.0.1280.680" timestamp="1639083498833" />
+    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog/0.0.1280.680@0.0.1280.680" timestamp="1641787288290" />
     <state x="438" y="161" width="404" height="346" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1641645873467">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

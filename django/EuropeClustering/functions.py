@@ -354,7 +354,7 @@ def plot_metrics(data: pd.DataFrame) -> None:
         dict(type='dropdown', buttons=buttons, xanchor='right', x=1, y=1.15, active=0)
         # , showactive=True)                    ]
     ]))
-    fig.update_layout(title='Metrics', title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20))
+    fig.update_layout(title='Metrics', title_x=0, title_xref='paper', margin=dict(l=20, r=20, t=20, b=20), paper_bgcolor='rgba(0,0,0,0)')
     return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
                        )
 
@@ -389,12 +389,19 @@ def plot_dbscan(data):
         for min_samples in min_samples_grid:
             model = DBSCAN(eps=eps, min_samples=min_samples, metric='precomputed')
             model.fit(dtw_matrix)
+            labels = model.labels_.astype(str)
+            countries["cluster"] = pd.Series(labels)
+            countries['cluster'] = np.where(countries['cluster'] == '-1', 'outlier', countries['cluster'])
             plot_data.append(dict(type='choropleth',
                                   locations=countries['countrycode'].astype(str),
                                   z=model.labels_.astype(str),
                                   colorscale=[[0, '#718355'], [0.33, '#ffe8d6'], [0.6, '#ddbea9'], [1, '#cb997e']],
-                                  showscale=False))
-    # (3,2), (3,3) ... (3.1, 2), (3.1, 3) 
+                                  showscale=False,
+                                  text = countries.apply(
+                                      lambda row: f"<b>{row['country']}</b><br>ISO code: {row['countrycode']}<br>Cluster: {row['cluster']} ",axis=1),
+                                  hoverinfo = "text"))
+
+            # (3,2), (3,3) ... (3.1, 2), (3.1, 3)
 
     steps = []
     i = 0
@@ -409,18 +416,19 @@ def plot_dbscan(data):
 
     sliders = [dict(active=0,
                     steps=steps,
-                    currentvalue={'prefix': '[Eps, min samples] -> '},
-                    len=0.8,
+                    currentvalue={'prefix': 'Eps, min_samples - '},
+                    len=0.9,
                     xanchor='center',
                     pad={"l":20,"r":20, "t":1},
-                    ticklen=10,
+                    ticklen=8,
                     x=0.5)]
 
     layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range': [35, 75]},
                            lonaxis={'range': [-15, 45]}), sliders=sliders, title='DBSCAN')
     fig = go.Figure(dict(data=plot_data, layout=layout))
     fig.update_traces(showlegend=False, selector=dict(type='choropleth'))
-    fig.update_layout(margin=dict(l=10, r=10, t=50, b=20))
+    fig.update_layout(showlegend=False, margin=dict(l=10, r=10, t=50, b=20), paper_bgcolor='rgba(0,0,0,0)',
+                      hoverlabel=dict(bgcolor="white", font_size=14), title_x=0.5, title_xref='paper')
     return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
                        )
 
@@ -443,3 +451,58 @@ def print_cluster_info(data: pd.DataFrame, labels: np.ndarray) -> pd.DataFrame:
         return data
     except Exception as ex:
         print(ex)
+
+def plot_insights(data):
+    """
+
+    :return:
+    """
+    year_grid = [x for x in range(1995, 2020, 3)]
+    plot_data = []
+    steps = []
+    countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
+    i = 0
+    for y in year_grid:
+        data_trimmed = data.loc[data.year <= y, :].loc[data.year > y - 10, :]
+        model = agglomerative_clustering(data_trimmed, 4, 'complete')
+
+        order = [11, 30, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,
+                 28, 29, 1, 31, 32, 33, 34, 35, 36, 37, 38]
+        dictionary = {k: None for k in np.unique(model.labels_)}
+        label = 0
+        for j in order:
+            if dictionary[model.labels_[j]] is None:
+                dictionary[model.labels_[j]] = label
+                label += 1
+            model.labels_[j] = dictionary[model.labels_[j]]
+        labels = model.labels_.astype(str)
+        countries["cluster"] = pd.Series(labels)
+        plot_data.append(dict(type='choropleth',
+                              locations=countries['countrycode'].astype(str),
+                              customdata=["country", 'countrycode', 'cluster'],
+                              text=countries.apply(lambda row: f"<b>{row['country']}</b><br>ISO code: {row['countrycode']}<br>Cluster: {row['cluster']} ", axis=1),
+                              hoverinfo="text",
+                              z=model.labels_,  showscale = False, # colorscale = ['#f1faee', '#a8dadc', '#457b9d']))
+                              colorscale=[[0, '#f1faee'], [0.33, '#a8dadc'], [0.66, '#457b9d'], [1, '#1d3557']]))
+        step = dict(method='restyle',
+                    args=['visible', [False] * len(year_grid)],
+                    label='{}'.format(y))
+        step['args'][1][i] = True
+        steps.append(step)
+        i += 1
+
+    sliders = [dict(active=0,
+                    pad={"t": 1},
+                    steps=steps)]
+
+    layout = dict(geo=dict(projection={'type': 'conic conformal'}, lataxis={'range': [35, 75]},
+                           lonaxis={'range': [-15, 45]}),
+                  sliders=sliders, showlegend=False)
+
+    fig = go.Figure(dict(data=plot_data,layout=layout))
+    fig.update_layout(title='Business cycles synchronization', showlegend=False, margin=dict(l=10, r=10, t=50, b=20), paper_bgcolor='rgba(0,0,0,0)',
+                      hoverlabel=dict(bgcolor="white", font_size=14), title_x=0.5, title_xref='paper')
+    # fig.update_traces(hovertemplate="<b>%{customdata[0]}</b><br><br>" + "<br>".join([
+    #     "ISO code: %{customdata[1]}", "Cluster: %{customdata[2]}"]) + "<extra></extra>")
+    return fig.to_html(full_html=False, default_height='100%', default_width='100%', config={'responsive': True}
+                       )

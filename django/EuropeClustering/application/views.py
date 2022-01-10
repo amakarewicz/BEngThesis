@@ -80,11 +80,14 @@ def readabout(request):
 
 def report(request):
     data = pd.DataFrame(list(Data.objects.all().values()))
+    data_boxcox = pd.DataFrame(list(DataBoxCox.objects.all().values()))
     data = data.drop('id', axis=1)
+    data_boxcox = data_boxcox.drop('id', axis=1)
     countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
     metric_data = pd.DataFrame(list(MetricsValues.objects.all().values()))
     metric_data = metric_data.drop('id', axis=1)
     metrics = plot_metrics(metric_data)
     dbscan = plot_dbscan(data)
-    context = {'metrics': metrics, 'dbscan': dbscan}
+    insights = plot_insights(data_boxcox)
+    context = {'metrics': metrics, 'dbscan': dbscan, 'insights': insights}
     return render(request, 'application/report.html', context)
