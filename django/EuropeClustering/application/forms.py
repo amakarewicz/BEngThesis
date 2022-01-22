@@ -24,23 +24,21 @@ class CustomizeReport(forms.Form):
                                                widget=forms.SelectMultiple(),
                                                label='Choose variables',
                                                initial=Variable.objects.all()) #CheckboxSelectMultiple
-    n_clusters = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
+    n_clusters = forms.ChoiceField(choices=[(x, x) for x in range(2, 9)],
                                    label='Number of clusters',
                                    initial=4)
     linkage = forms.ChoiceField(choices=linkage_choices,
                                 widget=forms.RadioSelect(attrs={'class': "radio_select"}),
                                 label='Linkage',
                                 initial='complete')
-    # eps = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
-    #                         label='Eps',
-    #                         initial=3.1)
+
     eps = forms.DecimalField(
         label='Eps',
         widget=forms.TextInput(
             attrs={
                 'step': '0.1',
                 'type': 'range',
-                'value': '3.1',
+                'value': '3.4',
                 'min': '2',
                 'max': '11',
                 'list': 'steplist',
@@ -49,7 +47,7 @@ class CustomizeReport(forms.Form):
             }
         )
     )
-    min_samples = forms.ChoiceField(choices=[(x, x) for x in range(2, 20)],
+    min_samples = forms.ChoiceField(choices=[(x, x) for x in range(2, 11)],
                                     label='Min samples',
-                                    initial=6)
-    # eps do zmiany
+                                    initial=7)
+

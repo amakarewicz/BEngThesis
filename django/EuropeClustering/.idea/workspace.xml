@@ -20,6 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6d74f9c-7815-4905-94cd-2fb2dd4082b5" name="Default Changelist" comment="django testing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/application/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +58,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../data/data_box.csv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../data/metrics_results.csv" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="sql.rename.search.for.storage.occurrences" value="true" />
@@ -155,6 +158,7 @@
       <workItem from="1641791849212" duration="334000" />
       <workItem from="1641792203286" duration="4638000" />
       <workItem from="1641805212963" duration="139000" />
+      <workItem from="1642886545749" duration="2990000" />
     </task>
     <servers />
   </component>
@@ -191,11 +195,11 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="509" y="96" key="EnvironmentVariablesDialog/0.0.1280.680@0.0.1280.680" timestamp="1638014411437" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1641787241314">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1642887815229">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1637967509912" />
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1641787241314" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1642887815229" />
     <state width="1237" height="162" key="GridCell.Tab.0.bottom" timestamp="1641797715409">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -252,10 +256,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="475" y="228" width="330" height="264" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1280.680@0.0.1280.680" timestamp="1641641365912" />
-    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog" timestamp="1641787288290">
+    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog" timestamp="1642887843980">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog/0.0.1280.680@0.0.1280.680" timestamp="1641787288290" />
+    <state x="221" y="0" key="com.intellij.database.dbimport.ImportDialog/0.0.1280.680@0.0.1280.680" timestamp="1642887843980" />
     <state x="438" y="161" width="404" height="346" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1641645873467">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

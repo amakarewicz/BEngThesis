@@ -1,13 +1,11 @@
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import plotly.express as px
 import plotly.graph_objs as go
 import matplotlib.pyplot as plt
 import io
 import urllib
 import base64
-from tslearn.preprocessing import TimeSeriesScalerMeanVariance
 from tslearn.clustering import TimeSeriesKMeans
 from dtaidistance import dtw_ndim
 from scipy.cluster.hierarchy import dendrogram
@@ -18,7 +16,6 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 # Using R inside python
 import rpy2.robjects.packages as rpackages
-from rpy2.robjects.vectors import StrVector
 from rpy2.robjects.packages import importr
 import rpy2.robjects.numpy2ri
 import rpy2.robjects.pandas2ri
@@ -309,19 +306,19 @@ def evaluate_clustering(data: pd.DataFrame, labels: np.array) -> pd.DataFrame:
         dtw_matrix = dtw_ndim.distance_matrix_fast(data_t_arr, n_vars)
         # calculating metric values
         sil_score = silhouette_score(dtw_matrix, labels, metric='precomputed')
-        dunn_index = clValid.dunn(dtw_matrix, labels)[0]
-        ch_score = symbolicDA.index_G1d(dtw_matrix, labels)[0]
+        dunn_index = clValid.dunn(dtw_matrix, labels+1)[0]
+        ch_score = symbolicDA.index_G1d(dtw_matrix, labels+1)[0]
         # results = pd.DataFrame([sil_score, dunn_index, ch_score], columns=['Values'],
         #                        index=['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'])
         if (sil_score < np.inf) & (dunn_index < np.inf) & (ch_score < np.inf):
             results = pd.DataFrame({'Index name': ['Silhouette score', 'Dunn Index', 'Calinski-Harabasz score'],
                                     'Value': [sil_score, dunn_index, ch_score]})
         else:
-            results = pd.DataFrame({'Results': ['Chosen parameters provide to unsatisfying results.']})
+            results = pd.DataFrame({'Results': ['Chosen parameters lead to unsatisfying results.']})
 
     except Exception as ex:
         print(ex)
-        results = pd.DataFrame({'Results': ['Application can not display results for one cluster.']})
+        results = pd.DataFrame({'Results': ['Application cannot display results for one cluster.']})
 
     finally:
         return results
@@ -398,7 +395,7 @@ def plot_dbscan(data: pd.DataFrame) -> str:
     countries = data[['countrycode', 'country']].drop_duplicates().reset_index(drop=True)
 
     eps_grid = [3, 3.1, 3.2, 3.3, 3.4, 3.5]
-    min_samples_grid = [2, 3, 4, 5, 6]
+    min_samples_grid = [3, 4, 5, 6, 7]
     plot_data = []
     for eps in eps_grid:
         for min_samples in min_samples_grid:
