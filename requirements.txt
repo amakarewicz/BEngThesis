@@ -2,7 +2,7 @@ Cython==0.29.24
 Django==3.2.9
 Jinja2==3.0.3
 MarkupSafe==2.0.1
-Pillow==8.4.0
+Pillow==9.0.0
 asgiref==3.4.1
 backports.zoneinfo==0.2.1
 cffi==1.15.0
