@@ -60,7 +60,7 @@ th, td {
 thead, tbody { display: block; }
 
 #variables tbody {
-    height: 200px;
+    height: 250px;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #b7b7a4;
@@ -70,18 +70,10 @@ thead, tbody { display: block; }
 #variables th {background-color: #6b705c}
 #models th {background-color: #6b705c}
 #models tbody {background-color: #b7b7a4}
+#metrics_desc th {background-color: #6b705c}
+#metrics_desc tbody {background-color: #b7b7a4}
 
 #cluster_info tbody {overflow-x: auto}
-
-/*#models tbody {*/
-/*    height: 100px;*/
-/*    overflow-y: auto;*/
-/*    overflow-x: hidden;*/
-/*}*/
-/*!*Something wrong with thead*!*/
-/*thead.th.indexcol, tbody.td.indexcol {width: 100px}*/
-/*thead.th.desccol, tbody.td.desccol {width: 400px}*/
-
 
 .radio_select{
     list-style-type: none;
@@ -94,83 +86,15 @@ thead, tbody { display: block; }
     background-color: white;
     margin-left: 25%;
 }
-/*.graph {*/
-/*  width: 35%;*/
-/*  height: 35%;*/
-/*  !*box-sizing: border-box;*!*/
-/*  !*border: 1px solid black;*!*/
-/*  !*float: left;*!*/
-/*  !*text-align: center;*!*/
-/*  !*padding: 16px;*!*/
-/*}*/
-/*#dbscan {*/
-/*    float:right;*/
-/*    margin-right: 3%;*/
-/*}*/
+
 #map {
     margin-right: 3%;
-    /*position: absolute;*/
-    /*right: 0;*/
 }
-/*#table table {margin-left: 0}*/
-/*#dendrogram {*/
-/*    float: right;*/
-/*}*/
 
 .dataframe {
     border: none;
-    /*display: table-header-group;*/
 }
 
-/*div#loading {*/
-/*    background-color: antiquewhite;*/
-/*    display: none;*/
-/*    margin-left: auto;*/
-/*    margin-right: auto;*/
-/*    width: 50%;*/
-/*}*/
-
-/*table {*/
-/*  width: 100%;*/
-/*  text-align: left;*/
-/*}*/
-/*tr {*/
-/*  height: 30px;*/
-/*  padding-top: 10px;*/
-/*}*/
-/*tbody {*/
-/*  height: 150px;*/
-/*  overflow-y: auto;*/
-/*  overflow-x: hidden;*/
-/*}*/
-/*th,*/
-/*td,*/
-/*tr,*/
-/*thead,*/
-/*tbody {*/
-/*  display: block;*/
-/*}*/
-/*td,*/
-/*th {*/
-/*  float: left;*/
-/*}*/
-/*td:nth-child(1),*/
-/*th:nth-child(1) {*/
-/*  width: 50%;*/
-/*}*/
-/*td:nth-child(2),*/
-/*th:nth-child(2) {*/
-/*  width: 50%;*/
-/*  float: left;*/
-/*}*/
-/*!* some colors *!*/
-/*thead {*/
-/*  background-color: #333333;*/
-/*  color: #fdfdfd;*/
-/*}*/
-/*table tbody tr:nth-child(even) {*/
-/*  background-color: #dddddd;*/
-/*}*/
 ::-webkit-scrollbar {
     width: 6px;
     background: #e3e5eb;

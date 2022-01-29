@@ -22,6 +22,13 @@
                 document.getElementById('models').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
 
             }
+            if (document.getElementById('metrics_desc')) {
+                var width1 = document.getElementById('metrics_desc').getElementsByTagName('td')[0].clientWidth
+                document.getElementById('metrics_desc').getElementsByTagName('th')[0].style.width = (width1 - 10 + 'px')
+                var width2 = document.getElementById('metrics_desc').getElementsByTagName('td')[1].clientWidth
+                document.getElementById('metrics_desc').getElementsByTagName('th')[1].style.width = (width2 - 10 + 'px')
+
+            }
 
             if (document.getElementById('cluster_info')) {
                 for (var i = 0; i < document.getElementById('cluster_info').getElementsByTagName('th').length; i++) {

@@ -20,7 +20,7 @@
                                 <th class='desccol'>Description</th>
                             </tr>
                         </thead>
-                        <tbody style="display: block;height: 200px;">
+                        <tbody style="display: block; height: 250px;">
                             {% for variable in variables %}
                             <tr>
                                 <td class='indexcol'>{{ variable.name }}</td>
@@ -30,6 +30,8 @@
                         </tbody>
                     </table>
                 </div>
+                <h3>Contact</h3>
+                <p>If you have any questions or you want to report failure, please contact us: agata.makarewicz.stud@pw.edu.pl, jacek.wisniewski3.stud@pw.edu.pl .</p>
             </div>
 
             <div class="column">
@@ -43,9 +45,9 @@
                                 <th>Model</th><th>Description</th>
                             </tr>
                         </thead>
-                        <tbody style="display: block; height: 300px; overflow-y: auto; overflow-x: hidden;">
+                        <tbody style="display: block; height: 200px; overflow-y: auto; overflow-x: hidden;">
                             <tr>
-                                <td>KMeans</td>
+                                <td>K-Means</td>
                                 <td>
                                     K-Means organizes points based on their distance from the cluster centre (centroid) and aims to minimize the distances between points within one cluster. Proposed implementation requires only one parameter to be passed by the user:
                                     <ul>
@@ -55,15 +57,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Agglomerative Clustering</td>
+                                <td>Agglomerative clustering</td>
                                 <td>Agglomerative clustering is a hierarchical algorithm that groups the objects according to the “bottom-up” approach: firstly assigns each observation to its own cluster, and in the next steps, pairs of clusters that are closest to each other are recursively merged into one cluster. Proposed implementation requires two parameters to be passed by the user:
                                     <ul>
                                         <li>n_clusters – number of clusters to form</li>
                                         <li>linkage – type of linkage criterion, i.e. the approach to be used for computing the distance between two clusters; the pairs of clusters that minimize this criterion are merged</li>
                                         <ul>
-                                            <li>“average” – average value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
-                                            <li>“complete” – maximum value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
-                                            <li>“single” – minimum value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
+                                            <li><i>average</i> – average value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
+                                            <li><i>complete</i> – maximum value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
+                                            <li><i>single</i> – minimum value of all pairwise distances between the elements in the first cluster and the elements in the second cluster</li>
                                         </ul>
                                     </ul>
                                 </td>
@@ -80,9 +82,34 @@
                             </tr>
                         </tbody>
                     </table>
-                    <h3>Contact</h3>
-                    <p>If you have any questions or you want to report failure, please contact us: agata.makarewicz.stud@pw.edu.pl, jacek.wisniewski3.stud@pw.edu.pl .</p>
-                </div>
+                    <h3>Metrics</h3>
+                    <p>There are three different clustering algorithms implemented. See the table below for more information about each model and its parameters.</p>
+                    <table id="metrics_desc">
+                        <thead style="display: block">
+                            <tr>
+                                <th style="background-color: #6b705c">Metric</th><th style="background-color: #6b705c">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: #b7b7a4; display: block; height: 200px; overflow-y: auto; overflow-x: hidden;">
+                            <tr>
+                                <td>Silhouette score</td>
+                                <td>
+                                    The Silhouette Score is calculated using the mean intra-cluster distance and the mean nearest-cluster distance for each sample. The best value of this algorithm is 1 and the worst value is -1. Values near 0 indicate overlapping clusters.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Calinski-Harabasz Index</td>
+                                <td>The Calinski-Harabasz index is defined as the ratio between the within-cluster dispersion and the between-cluster dispersion. It has a value from the range [0,&#8734;) and should be maximized. The higher value of the index indicates that the clusters are dense.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dunn Index</td>
+                                <td>Dunn index is the ratio of the smallest distance between observations of different clusters to the largest within-cluster distance. It has a value from the range [0,&#8734;) and should be maximized. The higher value of the index indicates that all observations in the cluster are well separated.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                 </div>
             </div>
         </div>
     </div>

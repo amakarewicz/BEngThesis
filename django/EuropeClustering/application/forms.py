@@ -3,8 +3,8 @@ from django import forms
 from application.models import Variable
 
 algorithm_choices = [
-    ('kmeans', 'KMeans'),
-    ('hierarchical', 'Hierarchical'),
+    ('kmeans', 'K-Means'),
+    ('hierarchical', 'Agglomerative'),
     ('dbscan', 'DBSCAN')
 ]
 
